@@ -4,87 +4,680 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BeTraC — Beyond Transcription Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ══════════════════════════════════════
+       THEME TOKENS — LIGHT
+    ══════════════════════════════════════ */
+    :root {
+      --bg:         #f4f6fd;
+      --surface:    #ffffff;
+      --surface2:   #eaedfa;
+      --border:     rgba(30,40,100,0.09);
+      --border-med: rgba(30,40,100,0.15);
+      --nav-bg:     rgba(244,246,253,0.90);
+      --accent:     #2563eb;
+      --accent2:    #1d4ed8;
+      --accent-bg:  rgba(37,99,235,0.07);
+      --accent-bdr: rgba(37,99,235,0.22);
+      --text:       #0d1530;
+      --text-muted: #334155;
+      --text-dim:   #64748b;
+      --green:      #059669;
+      --green-bg:   rgba(5,150,105,0.07);
+      --green-bdr:  rgba(5,150,105,0.18);
+      --amber:      #b45309;
+      --amber-bg:   rgba(180,83,9,0.06);
+      --amber-bdr:  rgba(180,83,9,0.16);
+      --red:        #dc2626;
+      --thead-bg:   rgba(30,40,100,0.04);
+      --blob1:      rgba(37,99,235,0.06);
+      --blob2:      rgba(99,102,241,0.04);
+      --shadow:     0 1px 3px rgba(0,0,0,0.06), 0 4px 14px rgba(0,0,0,0.05);
+      --track-lw:   linear-gradient(135deg, rgba(5,150,105,0.07), rgba(16,185,129,0.02));
+      --track-hw:   linear-gradient(135deg, rgba(37,99,235,0.08), rgba(99,102,241,0.02));
+    }
 
+    /* ══════════════════════════════════════
+       GLOBAL
+    ══════════════════════════════════════ */
+    *, *::before, *::after {
+      box-sizing: border-box; margin: 0; padding: 0;
+      transition: background-color 0.22s, border-color 0.22s, color 0.22s, box-shadow 0.22s;
+    }
+    html { scroll-behavior: smooth; }
     body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border-med); border-radius: 3px; }
+
+    /* ── BLOBS ── */
+    .blob {
+      position: fixed; border-radius: 50%;
+      filter: blur(130px); pointer-events: none; z-index: 0;
+    }
+    .blob-1 { width: 600px; height: 600px; top: -200px; left: -200px;
+      background: radial-gradient(circle, var(--blob1) 0%, transparent 70%); }
+    .blob-2 { width: 500px; height: 500px; bottom: 10%; right: -100px;
+      background: radial-gradient(circle, var(--blob2) 0%, transparent 70%); }
+
+    /* ══════════════════════════════════════
+       NAV
+    ══════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 3rem;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-left { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem; color: var(--text);
+      text-decoration: none; letter-spacing: 0.02em;
+    }
+    .nav-brand span { color: var(--accent2); }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 0.82rem; font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+
+    /* ── THEME TOGGLE ── */
+    .nav-cta {
+      background: var(--accent); color: #fff;
+      padding: 0.42rem 1.1rem; border-radius: 4px;
+      text-decoration: none; font-size: 0.82rem; font-weight: 500;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
+    .hero {
+      position: relative; z-index: 1;
       min-height: 100vh;
-      background: #f0f2f5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: Georgia, 'Times New Roman', serif;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 8rem 2rem 6rem;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent-bg); border: 1px solid var(--accent-bdr);
+      color: var(--accent); font-family: 'DM Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px; background: var(--green);
+      border-radius: 50%; animation: blink 2s ease infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.75)} }
+    .hero-acronym {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(4.5rem, 12vw, 9rem);
+      line-height: 1; letter-spacing: -0.02em; color: var(--text);
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hi { color: var(--accent); font-style: italic; }
+    .hero-fullname {
+      font-size: clamp(1rem, 2.5vw, 1.3rem); color: var(--text-muted);
+      margin-top: 0.6rem; font-weight: 300; letter-spacing: 0.04em;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-venue {
+      display: inline-block; margin-top: 0.8rem;
+      font-family: 'DM Mono', monospace; font-size: 0.77rem;
+      color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase;
+      animation: fadeUp 0.7s 0.25s ease both;
+    }
+    .hero-waveform { margin: 2.5rem 0; animation: fadeUp 0.7s 0.3s ease both; }
+    .wv-bar { fill: var(--accent); }
+    .hero-desc {
+      max-width: 640px; font-size: 1.05rem;
+      color: var(--text-muted); line-height: 1.8;
+      animation: fadeUp 0.7s 0.35s ease both;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; margin-top: 2.5rem;
+      flex-wrap: wrap; justify-content: center;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.8rem 1.8rem; border-radius: 5px;
+      font-size: 0.9rem; font-weight: 500; text-decoration: none; cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+      box-shadow: 0 0 28px rgba(59,130,246,0.25);
+    }
+    .btn-primary:hover { opacity: 0.87; transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border-med);
+    }
+    .btn-secondary:hover { border-color: var(--accent-bdr); background: var(--accent-bg); }
+
+    /* ── STATS ── */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 10px;
+      overflow: hidden; margin-top: 4rem; width: 100%; max-width: 900px;
+    }
+    .stat-cell { background: var(--surface); padding: 2rem 1.2rem; text-align: center; }
+    .stat-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem; color: var(--text); line-height: 1;
+    }
+    .stat-unit { font-size: 1rem; color: var(--accent); }
+    .stat-label {
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-dim); margin-top: 0.5rem;
     }
 
-    .card {
-      background: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-      padding: 3rem 3.5rem;
-      max-width: 480px;
-      width: 90%;
+    /* ══════════════════════════════════════
+       SECTIONS
+    ══════════════════════════════════════ */
+    section { position: relative; z-index: 1; padding: 6rem 2rem; }
+    .bg-surface { background: var(--surface); }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: 'DM Mono', monospace; font-size: 0.7rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.8rem;
     }
-
-    .acronym {
-      font-size: 2.8rem;
-      font-weight: bold;
-      color: #1a2744;
-      letter-spacing: 0.02em;
-      line-height: 1;
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15; color: var(--text); margin-bottom: 1.5rem;
     }
+    .section-body { font-size: 1rem; color: var(--text-muted); max-width: 680px; line-height: 1.8; }
+    hr.rule { border: none; border-top: 1px solid var(--border); margin-bottom: 4rem; }
 
-    .full-name {
-      font-size: 1.05rem;
-      color: #4a5568;
-      margin-top: 0.4rem;
-      font-style: italic;
+    /* ══════════════════════════════════════
+       OBJECTIVES
+    ══════════════════════════════════════ */
+    .objectives-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.4rem; margin-top: 3rem;
     }
-
-    .venue {
-      font-size: 0.95rem;
-      color: #718096;
-      margin-top: 0.6rem;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      font-style: normal;
+    .obj-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.8rem;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .2s;
     }
+    .obj-card:hover { border-color: var(--accent-bdr); transform: translateY(-3px); }
+    .obj-num { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: .12em; margin-bottom: .8rem; }
+    .obj-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--text); margin-bottom: .5rem; }
+    .obj-card p { font-size: .87rem; color: var(--text-muted); line-height: 1.7; }
 
-    hr {
-      border: none;
-      border-top: 1px solid #e2e8f0;
-      margin: 1.8rem 0;
+    /* ══════════════════════════════════════
+       TRACKS
+    ══════════════════════════════════════ */
+    .tracks-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin-top: 3rem;
     }
-
-    p {
-      font-size: 0.98rem;
-      color: #4a5568;
-      line-height: 1.65;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
+    @media(max-width:700px){ .tracks-grid{grid-template-columns:1fr;} }
+    .track-card {
+      border-radius: 12px; padding: 2.5rem;
+      position: relative; overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
     }
-
-    p + p {
-      margin-top: 0.75rem;
+    .track-lw { background: var(--track-lw); }
+    .track-hw { background: var(--track-hw); }
+    .track-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .track-name { font-family: 'DM Serif Display', serif; font-size: 1.55rem; color: var(--text); margin-bottom: .5rem; }
+    .track-pill {
+      display: inline-block; font-family: 'DM Mono', monospace;
+      font-size: 0.73rem; padding: .22rem .75rem; border-radius: 100px;
+      margin-bottom: 1.2rem; letter-spacing: .07em;
     }
+    .pill-green { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-bdr); }
+    .pill-blue  { background: var(--accent-bg); color: var(--accent); border: 1px solid var(--accent-bdr); }
+    .track-features { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .track-features li { display: flex; align-items: flex-start; gap: .7rem; font-size: .88rem; color: var(--text-muted); }
+    .baseline-note {
+      margin-top: 2rem; padding: 1.2rem 1.5rem;
+      background: var(--amber-bg); border: 1px solid var(--amber-bdr);
+      border-radius: 8px; font-size: .875rem; color: var(--text-muted);
+    }
+    .baseline-note strong { color: var(--amber); }
 
-    .contact {
-      margin-top: 1.4rem;
-      font-size: 0.88rem;
-      color: #a0aec0;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
+    /* ══════════════════════════════════════
+       DATA
+    ══════════════════════════════════════ */
+    .data-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: start; margin-top: 3rem;
+    }
+    @media(max-width:800px){ .data-layout{grid-template-columns:1fr;} }
+    .data-table {
+      width: 100%; border-collapse: collapse;
+      font-family: 'DM Mono', monospace; font-size: .82rem;
+      border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+    }
+    .data-table th {
+      text-align: left; padding: .7rem 1rem;
+      background: var(--thead-bg); color: var(--text-dim);
+      letter-spacing: .08em; text-transform: uppercase; font-size: .67rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: .85rem 1rem; border-bottom: 1px solid var(--border);
+      color: var(--text-muted); vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .split-train { color: var(--green); font-weight: 600; }
+    .split-dev   { color: var(--accent); font-weight: 600; }
+    .split-test  { color: var(--amber); font-weight: 600; }
+    .hf-btn {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: #f59e0b; color: #1a1200;
+      font-weight: 700; font-size: .88rem;
+      padding: .85rem 1.7rem; border-radius: 6px;
+      text-decoration: none; margin-top: 1.5rem;
+    }
+    .hf-btn:hover { background: #fbbf24; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(251,191,36,.25); }
+    .model-chip {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: 'DM Mono', monospace; font-size: .73rem;
+      color: var(--text-muted); padding: .35rem .8rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 4px; width: fit-content;
+    }
+    .eval-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    .eval-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.2rem 1.3rem; box-shadow: var(--shadow);
+    }
+    .eval-card.primary { border-color: var(--accent-bdr); background: var(--accent-bg); }
+    .eval-card .elabel { font-family:'DM Mono',monospace; font-size:.65rem; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:.4rem; }
+    .eval-card .ename { font-size:.95rem; font-weight:600; color:var(--text); margin-bottom:.3rem; }
+    .eval-card .edesc { font-size:.8rem; color:var(--text-muted); line-height:1.55; }
+    .postcomp-box {
+      margin-top: 3rem; padding: 2rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; box-shadow: var(--shadow);
+    }
+    .postcomp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media(max-width:600px){ .postcomp-grid, .eval-pair { grid-template-columns:1fr; } }
+
+    /* ══════════════════════════════════════
+       TIMELINE
+    ══════════════════════════════════════ */
+    .tl-wrap {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start; margin-top: 2rem;
+    }
+    @media(max-width:800px){ .tl-wrap{grid-template-columns:1fr;} }
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content:''; position:absolute; left:0; top:8px; bottom:8px;
+      width:2px; background:linear-gradient(to bottom, var(--accent), var(--border));
+      border-radius:1px;
+    }
+    .timeline-item { position:relative; padding:0 0 2.5rem 2rem; }
+    .timeline-item:last-child { padding-bottom:0; }
+    .tldot {
+      position:absolute; left:-5px; top:6px;
+      width:12px; height:12px; border-radius:50%;
+      background:var(--bg); border:2px solid var(--accent);
+    }
+    .tldot.active { background:var(--accent); box-shadow:0 0 0 4px var(--accent-bg); }
+    .tldate { font-family:'DM Mono',monospace; font-size:.71rem; color:var(--accent); letter-spacing:.07em; margin-bottom:.2rem; }
+    .tllabel { font-size:1rem; color:var(--text); font-weight:500; }
+    .tlsub { font-size:.82rem; color:var(--text-dim); margin-top:.15rem; }
+    .glance-box {
+      padding:2rem; background:var(--surface);
+      border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow);
+    }
+    .glance-sep { border:none; border-top:1px solid var(--border); margin:1rem 0; }
+    .gkey { font-size:.71rem; color:var(--text-dim); font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:.08em; }
+    .gval { font-size:.92rem; color:var(--text); margin-top:.2rem; }
+    .soap-row { display:flex; gap:.5rem; align-items:flex-start; font-size:.83rem; color:var(--text-muted); margin-top:.35rem; }
+    .soap-key { color:var(--accent); font-family:'DM Mono',monospace; font-size:.72rem; min-width:20px; padding-top:2px; }
+    .hard-rule { color:var(--red); font-size:.88rem; margin-top:.2rem; }
+
+    /* ══════════════════════════════════════
+       ORGANIZERS
+    ══════════════════════════════════════ */
+    .org-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+      gap: 1.2rem; margin-top: 3rem;
+    }
+    .org-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.5rem; box-shadow: var(--shadow);
+      transition: border-color .2s, transform .2s;
+    }
+    .org-card:hover { border-color: var(--accent-bdr); transform: translateY(-2px); }
+    .org-name { font-weight:600; font-size:.95rem; color:var(--text); margin-bottom:.1rem; }
+    .org-role { font-size:.82rem; color:var(--text-muted); margin-bottom:.3rem; }
+    .org-inst { font-family:'DM Mono',monospace; font-size:.7rem; color:var(--accent); letter-spacing:.04em; margin-bottom:.5rem; }
+    .org-email { font-family:'DM Mono',monospace; font-size:.68rem; color:var(--text-dim); display:block; margin-bottom:.8rem; text-decoration:none; }
+    .org-email:hover { color:var(--accent); }
+    .org-bio { font-size:.82rem; color:var(--text-muted); line-height:1.65; }
+    .sci-box {
+      margin-top:2.5rem; padding:1.4rem 1.8rem;
+      background:var(--surface2); border:1px solid var(--border); border-radius:8px;
+    }
+    .sci-label { font-family:'DM Mono',monospace; font-size:.67rem; letter-spacing:.14em; text-transform:uppercase; color:var(--text-dim); margin-bottom:.8rem; }
+    .sci-names { display:flex; flex-wrap:wrap; gap:.5rem 1.2rem; }
+    .sci-person { font-size:.85rem; color:var(--text); font-weight:500; }
+    .sci-org { color:var(--text-dim); }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:2.5rem; }
+    .footer-inner { display:flex; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; flex-wrap:wrap; gap:1rem; }
+    .footer-brand { font-family:'DM Serif Display',serif; font-size:1.2rem; color:var(--text-muted); }
+    .footer-links { display:flex; gap:1.8rem; list-style:none; }
+    .footer-links a { font-size:.8rem; color:var(--text-dim); text-decoration:none; }
+    .footer-links a:hover { color:var(--text-muted); }
+    .footer-copy { font-size:.76rem; color:var(--text-dim); }
+
+    @media(max-width:700px) {
+      nav { padding:1rem 1.5rem; }
+      .nav-links { display:none; }
+      .hero { padding:7rem 1.5rem 4rem; }
+      section { padding:4rem 1.5rem; }
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="acronym">BeTraC</div>
-    <div class="full-name">Beyond Transcription Challenge</div>
-    <div class="venue">IEEE SLT 2026</div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
 
-    <hr>
+  <!-- ═══ NAV ═══ -->
+  <nav>
+    <div class="nav-left">
+      <a href="#" class="nav-brand">Be<span>Tra</span>C</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#tracks">Tracks</a></li>
+        <li><a href="#data">Data</a></li>
+        <li><a href="#timeline">Schedule</a></li>
+        <li><a href="#organizers">Organizers</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <a href="https://huggingface.co/datasets/betrac" target="_blank" class="nav-cta">🤗 Dataset</a>
+    </div>
+  </nav>
 
-    <p>Website coming soon.</p>
-    <p>In the meantime, see our challenge proposal for details.</p>
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-badge"><span class="dot"></span>IEEE SLT 2026 Challenge</div>
+    <h1 class="hero-acronym">Be<span class="hi">Tra</span>C</h1>
+    <p class="hero-fullname">Beyond Transcription Challenge</p>
+    <span class="hero-venue">IEEE SLT 2026 · Open-Weight Models · Clinical AI</span>
 
-    <p class="contact">Contact: organizers — details TBD</p>
-  </div>
+    <div class="hero-waveform" aria-hidden="true">
+      <svg width="320" height="48" viewBox="0 0 320 48" xmlns="http://www.w3.org/2000/svg">
+        <style>@keyframes wb{0%,100%{transform:scaleY(.25)}50%{transform:scaleY(1)}} .wvb{animation:wb 1.4s ease-in-out infinite;transform-origin:center;}</style>
+        <rect class="wvb wv-bar" x="0"   y="16" width="4" height="16" rx="2" style="animation-delay:.00s"/>
+        <rect class="wvb wv-bar" x="8"   y="8"  width="4" height="32" rx="2" style="animation-delay:.07s"/>
+        <rect class="wvb wv-bar" x="16"  y="20" width="4" height="8"  rx="2" style="animation-delay:.14s"/>
+        <rect class="wvb wv-bar" x="24"  y="4"  width="4" height="40" rx="2" style="animation-delay:.21s"/>
+        <rect class="wvb wv-bar" x="32"  y="12" width="4" height="24" rx="2" style="animation-delay:.28s"/>
+        <rect class="wvb wv-bar" x="40"  y="18" width="4" height="12" rx="2" style="animation-delay:.35s"/>
+        <rect class="wvb wv-bar" x="48"  y="2"  width="4" height="44" rx="2" style="animation-delay:.42s"/>
+        <rect class="wvb wv-bar" x="56"  y="14" width="4" height="20" rx="2" style="animation-delay:.49s"/>
+        <rect class="wvb wv-bar" x="64"  y="20" width="4" height="8"  rx="2" style="animation-delay:.56s"/>
+        <rect class="wvb wv-bar" x="72"  y="8"  width="4" height="32" rx="2" style="animation-delay:.63s"/>
+        <rect class="wvb wv-bar" x="80"  y="16" width="4" height="16" rx="2" style="animation-delay:.70s"/>
+        <rect class="wvb wv-bar" x="88"  y="6"  width="4" height="36" rx="2" style="animation-delay:.77s"/>
+        <rect class="wvb wv-bar" x="96"  y="20" width="4" height="8"  rx="2" style="animation-delay:.84s"/>
+        <rect class="wvb wv-bar" x="104" y="10" width="4" height="28" rx="2" style="animation-delay:.91s"/>
+        <rect class="wvb wv-bar" x="112" y="0"  width="4" height="48" rx="2" style="animation-delay:.98s"/>
+        <rect class="wvb wv-bar" x="120" y="16" width="4" height="16" rx="2" style="animation-delay:1.05s"/>
+        <rect class="wvb wv-bar" x="128" y="12" width="4" height="24" rx="2" style="animation-delay:1.12s"/>
+        <rect class="wvb wv-bar" x="136" y="20" width="4" height="8"  rx="2" style="animation-delay:1.19s"/>
+        <rect class="wvb wv-bar" x="144" y="4"  width="4" height="40" rx="2" style="animation-delay:1.26s"/>
+        <rect class="wvb wv-bar" x="152" y="14" width="4" height="20" rx="2" style="animation-delay:1.33s"/>
+        <rect class="wvb wv-bar" x="160" y="18" width="4" height="12" rx="2" style="animation-delay:1.40s"/>
+        <rect class="wvb wv-bar" x="168" y="8"  width="4" height="32" rx="2" style="animation-delay:1.33s"/>
+        <rect class="wvb wv-bar" x="176" y="2"  width="4" height="44" rx="2" style="animation-delay:1.26s"/>
+        <rect class="wvb wv-bar" x="184" y="16" width="4" height="16" rx="2" style="animation-delay:1.19s"/>
+        <rect class="wvb wv-bar" x="192" y="10" width="4" height="28" rx="2" style="animation-delay:1.12s"/>
+        <rect class="wvb wv-bar" x="200" y="20" width="4" height="8"  rx="2" style="animation-delay:1.05s"/>
+        <rect class="wvb wv-bar" x="208" y="6"  width="4" height="36" rx="2" style="animation-delay:.98s"/>
+        <rect class="wvb wv-bar" x="216" y="14" width="4" height="20" rx="2" style="animation-delay:.91s"/>
+        <rect class="wvb wv-bar" x="224" y="0"  width="4" height="48" rx="2" style="animation-delay:.84s"/>
+        <rect class="wvb wv-bar" x="232" y="18" width="4" height="12" rx="2" style="animation-delay:.77s"/>
+        <rect class="wvb wv-bar" x="240" y="12" width="4" height="24" rx="2" style="animation-delay:.70s"/>
+        <rect class="wvb wv-bar" x="248" y="20" width="4" height="8"  rx="2" style="animation-delay:.63s"/>
+        <rect class="wvb wv-bar" x="256" y="8"  width="4" height="32" rx="2" style="animation-delay:.56s"/>
+        <rect class="wvb wv-bar" x="264" y="16" width="4" height="16" rx="2" style="animation-delay:.49s"/>
+        <rect class="wvb wv-bar" x="272" y="4"  width="4" height="40" rx="2" style="animation-delay:.42s"/>
+        <rect class="wvb wv-bar" x="280" y="14" width="4" height="20" rx="2" style="animation-delay:.35s"/>
+        <rect class="wvb wv-bar" x="288" y="20" width="4" height="8"  rx="2" style="animation-delay:.28s"/>
+        <rect class="wvb wv-bar" x="296" y="10" width="4" height="28" rx="2" style="animation-delay:.21s"/>
+        <rect class="wvb wv-bar" x="304" y="6"  width="4" height="36" rx="2" style="animation-delay:.14s"/>
+        <rect class="wvb wv-bar" x="312" y="16" width="4" height="16" rx="2" style="animation-delay:.07s"/>
+      </svg>
+    </div>
+
+    <p class="hero-desc">Can end-to-end audio models reason faithfully over long clinical conversations — without ever producing a transcript? BeTraC challenges participants to generate structured SOAP notes directly from raw doctor-patient audio.</p>
+    <div class="hero-actions">
+      <a href="https://huggingface.co/datasets/betrac" target="_blank" class="btn btn-primary">🤗 Access Dataset on Hugging Face</a>
+      <a href="#about" class="btn btn-secondary">Learn More →</a>
+    </div>
+    <div class="stats-row">
+      <div class="stat-cell"><div class="stat-number">8,800<span class="stat-unit"> conv.</span></div><div class="stat-label">Total Conversations</div></div>
+      <div class="stat-cell"><div class="stat-number">~1,329<span class="stat-unit"> hrs</span></div><div class="stat-label">Total Audio</div></div>
+      <div class="stat-cell"><div class="stat-number">~9<span class="stat-unit"> min</span></div><div class="stat-label">Avg. Duration</div></div>
+      <div class="stat-cell"><div class="stat-number">2</div><div class="stat-label">Competition Tracks</div></div>
+      <div class="stat-cell"><div class="stat-number">66</div><div class="stat-label">Ambient Sound Classes</div></div>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about">
+    <div class="container">
+      <hr class="rule">
+      <p class="section-label">About the Challenge</p>
+      <h2 class="section-title">Bridging the Gap in<br><em>End-to-End Audio Reasoning</em></h2>
+      <p class="section-body">Large audio language models (LALMs) have made impressive strides on short-context benchmarks, yet long-form audio reasoning remains an open frontier. On Synth-DoPaCo, E2E models show hallucination rates of <strong style="color:var(--red)">99–100%</strong> versus <strong style="color:var(--green)">21–23%</strong> for cascaded ASR pipelines — despite identical architectures. BeTraC isolates and attacks this gap head-on.</p>
+      <div class="objectives-grid">
+        <div class="obj-card"><div class="obj-num">01 ·</div><h3>Standardized Evaluation</h3><p>Establish a reproducible, community-wide benchmark for long-form E2E audio reasoning in clinical settings.</p></div>
+        <div class="obj-card"><div class="obj-num">02 ·</div><h3>Quantify the Gap</h3><p>Precisely measure the performance delta between E2E and cascaded systems under controlled, identical conditions.</p></div>
+        <div class="obj-card"><div class="obj-num">03 ·</div><h3>Stimulate Research</h3><p>Motivate new E2E model architectures and training strategies that close the hallucination and faithfulness gap.</p></div>
+        <div class="obj-card"><div class="obj-num">04 ·</div><h3>Assess Generalization</h3><p>Evaluate how synthetic-trained systems transfer to real clinical audio via post-competition out-of-domain evaluation.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TRACKS ═══ -->
+  <section id="tracks" class="bg-surface">
+    <div class="container">
+      <hr class="rule">
+      <p class="section-label">Competition Tracks</p>
+      <h2 class="section-title">Two Tracks,<br>One Hard Rule</h2>
+      <p class="section-body">Both tracks require <strong>open-weight models only</strong> and share the same constraint: <strong>no intermediate transcription</strong>. Systems must reason directly from raw audio to structured SOAP notes.</p>
+      <div class="tracks-grid">
+        <div class="track-card track-lw">
+          <div class="track-icon">⚡</div>
+          <div class="track-name">Lightweight Track</div>
+          <div class="track-pill pill-green">≤ 3B Parameters</div>
+          <ul class="track-features">
+            <li><span>✓</span> Open-weight models up to 3B parameters</li>
+            <li><span>✓</span> Direct E2E audio-to-SOAP pipeline</li>
+            <li><span>✗</span> No tool use or agentic pipelines</li>
+            <li><span>✗</span> No intermediate transcription at any stage</li>
+            <li style="margin-top:.4rem;color:var(--green)"><span>📌</span> Baseline: Qwen2.5-Omni-3B</li>
+          </ul>
+        </div>
+        <div class="track-card track-hw">
+          <div class="track-icon">🔬</div>
+          <div class="track-name">Heavyweight Track</div>
+          <div class="track-pill pill-blue">≤ 30B Parameters</div>
+          <ul class="track-features">
+            <li><span>✓</span> Open-weight models up to 30B parameters</li>
+            <li><span>✓</span> Tool use &amp; agentic architectures allowed</li>
+            <li><span>✓</span> Chain-of-thought agents, RAG pipelines</li>
+            <li><span>✗</span> No intermediate transcription at any stage</li>
+            <li style="margin-top:.4rem;color:var(--accent)"><span>📌</span> Baseline: Best of Qwen2.5-Omni-3B / Qwen3-Omni-30B variants</li>
+          </ul>
+        </div>
+      </div>
+      <div class="baseline-note"><strong>Reference Topline:</strong> A cascaded system (Whisper Large V3 + Qwen3-32B-Thinking) will be reported as an upper-bound reference. Cascaded systems are <em>not</em> eligible for competition ranking.</div>
+    </div>
+  </section>
+
+  <!-- ═══ DATA ═══ -->
+  <section id="data">
+    <div class="container">
+      <hr class="rule">
+      <p class="section-label">Dataset</p>
+      <h2 class="section-title">Synth-DoPaCo</h2>
+      <div class="data-layout">
+        <div>
+          <p class="section-body" style="max-width:100%">All data is built on the <strong>Synth-DoPaCo</strong> dataset — fully synthetic doctor-patient conversations generated with open-weight, permissively licensed models. Speaker identities are strictly disjoint across splits.</p>
+          <div style="margin-top:1.5rem">
+            <p style="font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.7rem;">Generation Pipeline</p>
+            <div style="display:flex;flex-direction:column;gap:.45rem;">
+              <div class="model-chip">💬 Gemma3-27B-IT — dialogue generation</div>
+              <div class="model-chip">🔊 Qwen3-TTS-1.7B — speech synthesis</div>
+              <div class="model-chip">📝 Kimi K2 Thinking — SOAP note production</div>
+            </div>
+          </div>
+          <p style="margin-top:1.4rem;font-size:.88rem;color:var(--text-muted);line-height:1.7">Audio includes <strong style="color:var(--text)">two speakers</strong>, natural overlap patterns, <strong style="color:var(--text)">66 ambient sound classes</strong> (typing, door knocks…), room reverberation, and Opus codec compression artifacts.</p>
+          <a href="https://huggingface.co/datasets/betrac" target="_blank" class="hf-btn">🤗 &nbsp;View on Hugging Face</a>
+        </div>
+        <div>
+          <table class="data-table">
+            <thead><tr><th>Split</th><th># Conv.</th><th>Hours</th><th>Includes</th></tr></thead>
+            <tbody>
+              <tr><td class="split-train">Train</td><td>7,200</td><td>~1,087</td><td>Audio + SOAP notes</td></tr>
+              <tr><td class="split-dev">Dev</td><td>400</td><td>~59</td><td>Audio + SOAP notes</td></tr>
+              <tr><td class="split-test">Test</td><td>1,200</td><td>~183</td><td>Audio only *</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:.71rem;color:var(--text-dim);margin-top:.5rem;font-family:'DM Mono',monospace;">* Reference SOAP notes withheld for blind evaluation.</p>
+          <div style="margin-top:2rem">
+            <p style="font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.7rem;">Evaluation Metrics</p>
+            <div class="eval-pair">
+              <div class="eval-card primary"><div class="elabel">Primary</div><div class="ename">Open Medical Concept F1</div><div class="edesc">MeSH keyword matching + NER via scispaCy</div></div>
+              <div class="eval-card"><div class="elabel">Secondary</div><div class="ename">ROUGE F1</div><div class="edesc">R-2, R-3, R-L against reference notes</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="postcomp-box">
+        <p style="font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;">Post-Competition Analysis (Top 5 per Track)</p>
+        <div class="postcomp-grid">
+          <div><p style="font-weight:600;color:var(--text);margin-bottom:.4rem;">LLM-as-a-Judge</p><p style="font-size:.85rem;color:var(--text-muted);line-height:1.7">Reference-free scoring across 4 dimensions (1–5): Faithfulness, Coverage, Structure, and Conciseness. Also reports hallucination, omission, and contradiction rates.</p></div>
+          <div><p style="font-weight:600;color:var(--text);margin-bottom:.4rem;">Out-of-Domain Generalization</p><p style="font-size:.85rem;color:var(--text-muted);line-height:1.7">20–30 conversations from Fareez et al. (272 real OSCE respiratory interviews) — tests whether gains on synthetic data transfer to real audio.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TIMELINE ═══ -->
+  <section id="timeline" class="bg-surface">
+    <div class="container">
+      <hr class="rule">
+      <p class="section-label">Schedule</p>
+      <h2 class="section-title">Key Milestones</h2>
+      <div class="tl-wrap">
+        <div class="timeline">
+          <div class="timeline-item"><div class="tldot active"></div><div class="tldate">April 2, 2026</div><div class="tllabel">Training + Dev Data Release</div><div class="tlsub">Audio + reference SOAP notes published on Hugging Face</div></div>
+          <div class="timeline-item"><div class="tldot"></div><div class="tldate">May 4, 2026</div><div class="tllabel">Open-Source Proposals Deadline</div><div class="tlsub">Participants proposing additional open-source models or data</div></div>
+          <div class="timeline-item"><div class="tldot"></div><div class="tldate">June 24, 2026</div><div class="tllabel">System Submission Deadline</div><div class="tlsub">Final submissions for Lightweight and Heavyweight tracks</div></div>
+          <div class="timeline-item"><div class="tldot"></div><div class="tldate">July 1, 2026</div><div class="tllabel">Results Announcement</div><div class="tlsub">Automated metric results released for all submissions</div></div>
+          <div class="timeline-item"><div class="tldot"></div><div class="tldate">July 8, 2026</div><div class="tllabel">Challenge Paper Submission</div><div class="tlsub">System description papers due for IEEE SLT 2026 proceedings</div></div>
+        </div>
+        <div class="glance-box">
+          <p style="font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1.2rem;">Task at a Glance</p>
+          <p class="gkey">Input</p>
+          <p class="gval">Raw single-channel audio waveform (avg. ~9 min, range 2–47 min)</p>
+          <hr class="glance-sep">
+          <p class="gkey">Output — Structured SOAP Note</p>
+          <div class="soap-row"><span class="soap-key">S</span><span>Subjective: chief complaint, HPI, review of systems</span></div>
+          <div class="soap-row"><span class="soap-key">O</span><span>Objective: physical examination findings</span></div>
+          <div class="soap-row"><span class="soap-key">A</span><span>Assessment: clinical impression</span></div>
+          <div class="soap-row"><span class="soap-key">P</span><span>Plan: proposed next steps</span></div>
+          <hr class="glance-sep">
+          <p class="gkey">Hard Rule</p>
+          <p class="hard-rule">No intermediate transcript or ASR output at any pipeline stage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ORGANIZERS ═══ -->
+  <section id="organizers">
+    <div class="container">
+      <hr class="rule">
+      <p class="section-label">Team</p>
+      <h2 class="section-title">Organizers</h2>
+      <div class="org-grid">
+        <div class="org-card"><div class="org-name">Andrew Perrault</div><div class="org-role">Assistant Professor of CSE</div><div class="org-inst">The Ohio State University</div><a href="mailto:perrault.17@osu.edu" class="org-email">perrault.17@osu.edu</a></div>
+        <div class="org-card"><div class="org-name">Jiyun Chun</div><div class="org-role">Ph.D. Student</div><div class="org-inst">The Ohio State University</div><a href="mailto:chun.203@osu.edu" class="org-email">chun.203@osu.edu</a></div>
+        <div class="org-card"><div class="org-name">Samuele Cornell</div><div class="org-role">Postdoctoral Research Associate</div><div class="org-inst">Carnegie Mellon University</div><a href="mailto:scornell@andrew.cmu.edu" class="org-email">scornell@andrew.cmu.edu</a></div>
+        <div class="org-card"><div class="org-name">Siddhant Arora</div><div class="org-role">Ph.D. Student</div><div class="org-inst">Carnegie Mellon University</div><a href="mailto:siddhana@andrew.cmu.edu" class="org-email">siddhana@andrew.cmu.edu</a></div>
+        <div class="org-card"><div class="org-name">Syed-Amad Hussain</div><div class="org-role">Ph.D. Candidate</div><div class="org-inst">The Ohio State University</div><a href="mailto:amad.hussain@nationwidechildrens.org" class="org-email">amad.hussain@nationwidechildrens.org</a></div>
+        <div class="org-card"><div class="org-name">Thomas Schaaf</div><div class="org-role">Principal Research Scientist</div><div class="org-inst">Solventum / CMU LTI</div><a href="mailto:thomas.schaaf@ieee.org" class="org-email">thomas.schaaf@ieee.org</a></div>
+        <div class="org-card"><div class="org-name">Markus Müller</div><div class="org-role">Senior Applied Scientist</div><div class="org-inst">Amazon</div><a href="mailto:markus.mueller@ieee.org" class="org-email">markus.mueller@ieee.org</a></div>
+        <div class="org-card"><div class="org-name">Leibny Paola Garcia</div><div class="org-role">Assistant Research Scientist</div><div class="org-inst">Johns Hopkins University (CLSP)</div><a href="mailto:lgarci27@jhu.edu" class="org-email">lgarci27@jhu.edu</a></div>
+        <div class="org-card"><div class="org-name">Ahmed Hassoon, MD, MPH</div><div class="org-role">Assistant Research Professor</div><div class="org-inst">Johns Hopkins University Bloomberg School of Public Health</div><a href="mailto:ahassoo1@jhu.edu" class="org-email">ahassoo1@jhu.edu</a></div>
+      </div>
+      <div class="sci-box">
+        <p class="sci-label">Scientific Committee</p>
+        <div class="sci-names">
+          <span class="sci-person">Ehsan Variani <span class="sci-org">(Google)</span></span>
+          <span class="sci-person">Thejaswi Muniyappa <span class="sci-org">(Amazon)</span></span>
+          <span class="sci-person">Arindam Ghosh <span class="sci-org">(Solventum)</span></span>
+          <span class="sci-person">John Glover <span class="sci-org">(Solventum)</span></span>
+          <span class="sci-person">Ralf Schlüter <span class="sci-org">(RWTH Aachen University)</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">BeTraC</div>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#tracks">Tracks</a></li>
+        <li><a href="#data">Data</a></li>
+        <li><a href="#timeline">Schedule</a></li>
+        <li><a href="https://huggingface.co/datasets/betrac" target="_blank">🤗 Hugging Face</a></li>
+        <li><a href="https://betrac.github.io" target="_blank">GitHub</a></li>
+      </ul>
+      <p class="footer-copy">Beyond Transcription Challenge · IEEE SLT 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const html  = document.documentElement;
+
 </body>
 </html>
+
