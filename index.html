@@ -468,7 +468,7 @@
       <hr class="rule">
       <p class="section-label">About the Challenge</p>
       <h2 class="section-title">Bridging the Gap in<br><em>End-to-End Audio Reasoning</em></h2>
-      <p class="section-body"><span style="display:block;white-space:nowrap;">Large audio language models (LALMs) have made impressive strides on short-context benchmarks, yet long-form audio reasoning remains an open frontier.</span><span style="display:block;white-space:nowrap;">On Synth-DoPaCo, E2E models show hallucination rates of <strong style="color:var(--red)">99–100%</strong> versus <strong style="color:var(--green)">21–23%</strong> for cascaded ASR pipelines — despite identical architectures.</span><span style="display:block;white-space:nowrap;">BeTraC isolates and attacks this gap head-on.</span></p>
+      <p class="section-body" style="max-width:none;"><span style="display:block;white-space:nowrap;">Large audio language models (LALMs) have made impressive strides on short-context benchmarks, yet long-form audio reasoning remains an open frontier.</span><span style="display:block;white-space:nowrap;">On Synth-DoPaCo, E2E models show hallucination rates of <strong style="color:var(--red)">99–100%</strong> versus <strong style="color:var(--green)">21–23%</strong> for cascaded ASR pipelines — despite identical architectures.</span><span style="display:block;white-space:nowrap;">BeTraC isolates and attacks this gap head-on.</span></p>
       <div class="objectives-grid">
         <div class="obj-card"><h3>Standardized Evaluation</h3><p>Establish a reproducible, community-wide benchmark for long-form E2E audio reasoning in clinical settings.</p></div>
         <div class="obj-card"><h3>Quantify the Gap</h3><p>Precisely measure the performance delta between E2E and cascaded systems under controlled, identical conditions.</p></div>
@@ -519,7 +519,7 @@
     <div class="container">
       <hr class="rule">
       <p class="section-label">Dataset</p>
-      <h2 class="section-title">Synth-DoPaCo</h2>
+      <h2 class="section-title" style="display:flex;align-items:center;gap:1rem;">Synth-DoPaCo <a href="#" target="_blank" style="font-family:'DM Mono',monospace;font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);border:1px solid var(--accent-bdr);padding:0.3rem 0.85rem;border-radius:100px;text-decoration:none;vertical-align:middle;white-space:nowrap;">📄 Paper</a></h2>
       <div class="data-layout">
         <div>
           <p class="section-body" style="max-width:100%">All data is built on the <strong>Synth-DoPaCo</strong> dataset — fully synthetic doctor-patient conversations generated with open-weight, permissively licensed models. Speaker identities are strictly disjoint across splits.</p>
