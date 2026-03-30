@@ -7,9 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
   <style>
-    /* ══════════════════════════════════════
-       THEME TOKENS — LIGHT
-    ══════════════════════════════════════ */
     :root {
       --bg:         #f4f6fd;
       --surface:    #ffffff;
@@ -38,10 +35,6 @@
       --track-lw:   linear-gradient(135deg, rgba(5,150,105,0.07), rgba(16,185,129,0.02));
       --track-hw:   linear-gradient(135deg, rgba(37,99,235,0.08), rgba(99,102,241,0.02));
     }
-
-    /* ══════════════════════════════════════
-       GLOBAL
-    ══════════════════════════════════════ */
     *, *::before, *::after {
       box-sizing: border-box; margin: 0; padding: 0;
       transition: background-color 0.22s, border-color 0.22s, color 0.22s, box-shadow 0.22s;
@@ -58,8 +51,6 @@
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border-med); border-radius: 3px; }
-
-    /* ── BLOBS ── */
     .blob {
       position: fixed; border-radius: 50%;
       filter: blur(130px); pointer-events: none; z-index: 0;
@@ -68,10 +59,6 @@
       background: radial-gradient(circle, var(--blob1) 0%, transparent 70%); }
     .blob-2 { width: 500px; height: 500px; bottom: 10%; right: -100px;
       background: radial-gradient(circle, var(--blob2) 0%, transparent 70%); }
-
-    /* ══════════════════════════════════════
-       NAV
-    ══════════════════════════════════════ */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
@@ -95,18 +82,12 @@
     }
     .nav-links a:hover { color: var(--text); }
     .nav-right { display: flex; align-items: center; gap: 1rem; }
-
-    /* ── THEME TOGGLE ── */
     .nav-cta {
       background: var(--accent); color: #fff;
       padding: 0.42rem 1.1rem; border-radius: 4px;
       text-decoration: none; font-size: 0.82rem; font-weight: 500;
     }
     .nav-cta:hover { opacity: 0.85; }
-
-    /* ══════════════════════════════════════
-       HERO
-    ══════════════════════════════════════ */
     .hero {
       position: relative; z-index: 1;
       min-height: 100vh;
@@ -159,7 +140,6 @@
       animation: fadeUp 0.7s 0.4s ease both;
     }
     @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
-
     .btn {
       display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.8rem 1.8rem; border-radius: 5px;
@@ -175,8 +155,6 @@
       border: 1px solid var(--border-med);
     }
     .btn-secondary:hover { border-color: var(--accent-bdr); background: var(--accent-bg); }
-
-    /* ── STATS ── */
     .stats-row {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
       gap: 1px; background: var(--border);
@@ -194,10 +172,6 @@
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--text-dim); margin-top: 0.5rem;
     }
-
-    /* ══════════════════════════════════════
-       SECTIONS
-    ══════════════════════════════════════ */
     section { position: relative; z-index: 1; padding: 6rem 2rem; }
     .bg-surface { background: var(--surface); }
     .container { max-width: 1100px; margin: 0 auto; }
@@ -213,10 +187,6 @@
     }
     .section-body { font-size: 1rem; color: var(--text-muted); max-width: 680px; line-height: 1.8; }
     hr.rule { border: none; border-top: 1px solid var(--border); margin-bottom: 4rem; }
-
-    /* ══════════════════════════════════════
-       OBJECTIVES
-    ══════════════════════════════════════ */
     .objectives-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 1.4rem; margin-top: 3rem;
@@ -231,10 +201,6 @@
     .obj-num { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: .12em; margin-bottom: .8rem; }
     .obj-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--text); margin-bottom: .5rem; }
     .obj-card p { font-size: .87rem; color: var(--text-muted); line-height: 1.7; }
-
-    /* ══════════════════════════════════════
-       TRACKS
-    ══════════════════════════════════════ */
     .tracks-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 1.5rem; margin-top: 3rem;
@@ -266,9 +232,25 @@
     }
     .baseline-note strong { color: var(--amber); }
 
-    /* ══════════════════════════════════════
-       DATA
-    ══════════════════════════════════════ */
+    /* ── NO INTERMEDIATE TRANSCRIPTION highlight ── */
+    .no-transcript-highlight {
+      display: inline;
+      color: var(--red);
+      font-weight: 700;
+      font-size: 1.06em;
+      letter-spacing: 0.01em;
+      position: relative;
+    }
+    .no-transcript-highlight::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -1px;
+      height: 2px;
+      background: var(--red);
+      opacity: 0.35;
+      border-radius: 1px;
+    }
+
     .data-layout {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 3rem; align-items: start; margin-top: 3rem;
@@ -324,10 +306,6 @@
     }
     .postcomp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     @media(max-width:600px){ .postcomp-grid, .eval-pair { grid-template-columns:1fr; } }
-
-    /* ══════════════════════════════════════
-       TIMELINE
-    ══════════════════════════════════════ */
     .tl-wrap {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 4rem; align-items: start; margin-top: 2rem;
@@ -360,10 +338,6 @@
     .soap-row { display:flex; gap:.5rem; align-items:flex-start; font-size:.83rem; color:var(--text-muted); margin-top:.35rem; }
     .soap-key { color:var(--accent); font-family:'DM Mono',monospace; font-size:.72rem; min-width:20px; padding-top:2px; }
     .hard-rule { color:var(--red); font-size:.88rem; margin-top:.2rem; }
-
-    /* ══════════════════════════════════════
-       ORGANIZERS
-    ══════════════════════════════════════ */
     .org-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
       gap: 1.2rem; margin-top: 3rem;
@@ -390,10 +364,6 @@
     .sci-names { display:flex; flex-wrap:wrap; gap:.5rem 1.2rem; }
     .sci-person { font-size:.82rem; color:var(--text); font-weight:500; }
     .sci-org { color:var(--text-dim); }
-
-    /* ══════════════════════════════════════
-       FOOTER
-    ══════════════════════════════════════ */
     footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:2.5rem; }
     .footer-inner { display:flex; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; flex-wrap:wrap; gap:1rem; }
     .footer-brand { font-family:'DM Serif Display',serif; font-size:1.2rem; color:var(--text-muted); }
@@ -401,7 +371,6 @@
     .footer-links a { font-size:.8rem; color:var(--text-dim); text-decoration:none; }
     .footer-links a:hover { color:var(--text-muted); }
     .footer-copy { font-size:.76rem; color:var(--text-dim); }
-
     @media(max-width:700px) {
       nav { padding:1rem 1.5rem; }
       .nav-links { display:none; }
@@ -414,7 +383,6 @@
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
 
-  <!-- ═══ NAV ═══ -->
   <nav>
     <div class="nav-left">
       <a href="#" class="nav-brand">Be<span>Tra</span>C</a>
@@ -432,7 +400,6 @@
     </div>
   </nav>
 
-  <!-- ═══ HERO ═══ -->
   <section class="hero">
     <a href="https://attend.ieee.org/slt-2026/call-for-challenges/" target="_blank" class="hero-badge"><span class="dot"></span>IEEE SLT 2026 Challenge</a>
     <h1 class="hero-acronym">Be<span class="hi">Tra</span>C</h1>
@@ -482,8 +449,7 @@
         <rect class="wvb wv-bar" x="312" y="16" width="4" height="16" rx="2" style="animation-delay:.07s"/>
       </svg>
     </div>
-
-    <p class="hero-desc">Can end-to-end audio models reason faithfully over long clinical conversations — without ever producing a transcript? BeTraC challenges participants to generate structured SOAP notes directly from raw doctor-patient audio.</p>
+    <p class="hero-desc" style="max-width:none;width:100%;text-align:center;"><span style="display:block;white-space:nowrap;">Can end-to-end audio models reason faithfully over long clinical conversations — without ever producing a transcript?</span><span style="display:block;white-space:nowrap;">BeTraC challenges participants to generate structured SOAP notes directly from raw doctor-patient audio.</span></p>
     <div class="hero-actions">
       <a href="https://huggingface.co/datasets/betrac" target="_blank" class="btn btn-primary">🤗 Access Dataset on Hugging Face</a>
       <a href="#about" class="btn btn-secondary">Learn More →</a>
@@ -497,13 +463,12 @@
     </div>
   </section>
 
-  <!-- ═══ ABOUT ═══ -->
   <section id="about">
     <div class="container">
       <hr class="rule">
       <p class="section-label">About the Challenge</p>
       <h2 class="section-title">Bridging the Gap in<br><em>End-to-End Audio Reasoning</em></h2>
-      <p class="section-body">Large audio language models (LALMs) have made impressive strides on short-context benchmarks, yet long-form audio reasoning remains an open frontier. On Synth-DoPaCo, E2E models show hallucination rates of <strong style="color:var(--red)">99–100%</strong> versus <strong style="color:var(--green)">21–23%</strong> for cascaded ASR pipelines — despite identical architectures. BeTraC isolates and attacks this gap head-on.</p>
+      <p class="section-body"><span style="display:block;white-space:nowrap;">Large audio language models (LALMs) have made impressive strides on short-context benchmarks, yet long-form audio reasoning remains an open frontier.</span><span style="display:block;white-space:nowrap;">On Synth-DoPaCo, E2E models show hallucination rates of <strong style="color:var(--red)">99–100%</strong> versus <strong style="color:var(--green)">21–23%</strong> for cascaded ASR pipelines — despite identical architectures.</span><span style="display:block;white-space:nowrap;">BeTraC isolates and attacks this gap head-on.</span></p>
       <div class="objectives-grid">
         <div class="obj-card"><h3>Standardized Evaluation</h3><p>Establish a reproducible, community-wide benchmark for long-form E2E audio reasoning in clinical settings.</p></div>
         <div class="obj-card"><h3>Quantify the Gap</h3><p>Precisely measure the performance delta between E2E and cascaded systems under controlled, identical conditions.</p></div>
@@ -513,13 +478,13 @@
     </div>
   </section>
 
-  <!-- ═══ TRACKS ═══ -->
   <section id="tracks" class="bg-surface">
     <div class="container">
       <hr class="rule">
       <p class="section-label">Competition Tracks</p>
       <h2 class="section-title">Two Tracks,<br>One Hard Rule</h2>
-      <p class="section-body">Both tracks require <strong>open-weight models only</strong> and share the same constraint: <strong>no intermediate transcription</strong>. Systems must reason directly from raw audio to structured SOAP notes.</p>
+      <!-- ★ MODIFIED: "no intermediate transcription" is now bold+red with underline, sentence breaks after it -->
+      <p class="section-body"><span style="white-space:nowrap;">Both tracks require <strong>open-weight models only</strong> and share the same constraint: <span class="no-transcript-highlight">no intermediate transcription</span>.</span><br>Systems must reason directly from raw audio to structured SOAP notes.</p>
       <div class="tracks-grid">
         <div class="track-card track-lw">
           <div class="track-icon">⚡</div>
@@ -550,7 +515,6 @@
     </div>
   </section>
 
-  <!-- ═══ DATA ═══ -->
   <section id="data">
     <div class="container">
       <hr class="rule">
@@ -599,7 +563,6 @@
     </div>
   </section>
 
-  <!-- ═══ TIMELINE ═══ -->
   <section id="timeline" class="bg-surface">
     <div class="container">
       <hr class="rule">
@@ -631,7 +594,6 @@
     </div>
   </section>
 
-  <!-- ═══ ORGANIZERS ═══ -->
   <section id="organizers">
     <div class="container">
       <hr class="rule">
@@ -661,7 +623,6 @@
     </div>
   </section>
 
-  <!-- ═══ FOOTER ═══ -->
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">BeTraC</div>
