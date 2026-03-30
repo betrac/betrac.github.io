@@ -136,7 +136,7 @@
     .hi { color: var(--accent); font-style: italic; }
     .hero-fullname {
       font-size: clamp(1rem, 2.5vw, 1.3rem); color: var(--text-muted);
-      margin-top: 0.6rem; font-weight: 300; letter-spacing: 0.04em;
+      margin-top: 0.6rem; font-weight: 600; letter-spacing: 0.04em;
       animation: fadeUp 0.7s 0.2s ease both;
     }
     .hero-venue {
@@ -435,7 +435,6 @@
     <div class="hero-badge"><span class="dot"></span>IEEE SLT 2026 Challenge</div>
     <h1 class="hero-acronym">Be<span class="hi">Tra</span>C</h1>
     <p class="hero-fullname">Beyond Transcription Challenge</p>
-
     <div class="hero-waveform" aria-hidden="true">
       <svg width="320" height="48" viewBox="0 0 320 48" xmlns="http://www.w3.org/2000/svg">
         <style>@keyframes wb{0%,100%{transform:scaleY(.25)}50%{transform:scaleY(1)}} .wvb{animation:wb 1.4s ease-in-out infinite;transform-origin:center;}</style>
@@ -504,10 +503,10 @@
       <h2 class="section-title">Bridging the Gap in<br><em>End-to-End Audio Reasoning</em></h2>
       <p class="section-body">Large audio language models (LALMs) have made impressive strides on short-context benchmarks, yet long-form audio reasoning remains an open frontier. On Synth-DoPaCo, E2E models show hallucination rates of <strong style="color:var(--red)">99–100%</strong> versus <strong style="color:var(--green)">21–23%</strong> for cascaded ASR pipelines — despite identical architectures. BeTraC isolates and attacks this gap head-on.</p>
       <div class="objectives-grid">
-        <div class="obj-card"><div class="obj-num">01 ·</div><h3>Standardized Evaluation</h3><p>Establish a reproducible, community-wide benchmark for long-form E2E audio reasoning in clinical settings.</p></div>
-        <div class="obj-card"><div class="obj-num">02 ·</div><h3>Quantify the Gap</h3><p>Precisely measure the performance delta between E2E and cascaded systems under controlled, identical conditions.</p></div>
-        <div class="obj-card"><div class="obj-num">03 ·</div><h3>Stimulate Research</h3><p>Motivate new E2E model architectures and training strategies that close the hallucination and faithfulness gap.</p></div>
-        <div class="obj-card"><div class="obj-num">04 ·</div><h3>Assess Generalization</h3><p>Evaluate how synthetic-trained systems transfer to real clinical audio via post-competition out-of-domain evaluation.</p></div>
+        <div class="obj-card"><h3>Standardized Evaluation</h3><p>Establish a reproducible, community-wide benchmark for long-form E2E audio reasoning in clinical settings.</p></div>
+        <div class="obj-card"><h3>Quantify the Gap</h3><p>Precisely measure the performance delta between E2E and cascaded systems under controlled, identical conditions.</p></div>
+        <div class="obj-card"><h3>Stimulate Research</h3><p>Motivate new E2E model architectures and training strategies that close the hallucination and faithfulness gap.</p></div>
+        <div class="obj-card"><h3>Assess Generalization</h3><p>Evaluate how synthetic-trained systems transfer to real clinical audio via post-competition out-of-domain evaluation.</p></div>
       </div>
     </div>
   </section>
@@ -638,14 +637,14 @@
       <h2 class="section-title">Organizers</h2>
       <div class="org-grid">
         <div class="org-card"><div class="org-name"><a href="https://aperrault.github.io/" target="_blank" class="org-link">Andrew Perrault</a></div><div class="org-role">Assistant Professor of CSE</div><div class="org-inst">The Ohio State University</div><span class="org-email" id="e1"></span></div>
-        <div class="org-card"><div class="org-name"><a href="https://amyyyyeah.github.io/" target="_blank" class="org-link">Jiyun (Amy) Chun</a></div><div class="org-role">Ph.D. Student</div><div class="org-inst">The Ohio State University</div><span class="org-email" id="e2"></span></div>
+        <div class="org-card"><div class="org-name"><a href="https://amyyyyeah.github.io/" target="_blank" class="org-link">Jiyun Chun</a></div><div class="org-role">Ph.D. Student</div><div class="org-inst">The Ohio State University</div><span class="org-email" id="e2"></span></div>
         <div class="org-card"><div class="org-name"><a href="https://popcornell.github.io/" target="_blank" class="org-link">Samuele Cornell</a></div><div class="org-role">Postdoctoral Research Associate</div><div class="org-inst">Carnegie Mellon University</div><span class="org-email" id="e3"></span></div>
         <div class="org-card"><div class="org-name"><a href="https://siddhu001.github.io/" target="_blank" class="org-link">Siddhant Arora</a></div><div class="org-role">Ph.D. Student</div><div class="org-inst">Carnegie Mellon University</div><span class="org-email" id="e4"></span></div>
         <div class="org-card"><div class="org-name"><a href="https://scholar.google.com/citations?user=FaisAH0AAAAJ&hl=en" target="_blank" class="org-link">Syed-Amad Hussain</a></div><div class="org-role">Ph.D. Candidate</div><div class="org-inst">The Ohio State University</div><span class="org-email" id="e5"></span></div>
         <div class="org-card"><div class="org-name"><a href="https://scholar.google.com/citations?user=gyDVO1IAAAAJ&hl=en" target="_blank" class="org-link">Thomas Schaaf</a></div><div class="org-role">Principal Research Scientist</div><div class="org-inst">Solventum / CMU LTI</div><span class="org-email" id="e6"></span></div>
         <div class="org-card"><div class="org-name"><a href="https://scholar.google.com/citations?user=t1g04OYAAAAJ&hl=de" target="_blank" class="org-link">Markus Müller</a></div><div class="org-role">Senior Applied Scientist</div><div class="org-inst">Amazon</div><span class="org-email" id="e7"></span></div>
         <div class="org-card"><div class="org-name"><a href="https://www.clsp.jhu.edu/faculty/paola-garcia/" target="_blank" class="org-link">Leibny Paola Garcia</a></div><div class="org-role">Assistant Research Scientist</div><div class="org-inst">Johns Hopkins University (CLSP)</div><span class="org-email" id="e8"></span></div>
-        <div class="org-card"><div class="org-name"><a href="https://publichealth.jhu.edu/faculty/3198/ahmed-hassoon" target="_blank" class="org-link">Ahmed Hassoon, MD, MPH</a></div><div class="org-role">Assistant Research Professor</div><div class="org-inst">Johns Hopkins University Bloomberg School of Public Health</div><span class="org-email" id="e9"></span></div>
+        <div class="org-card"><div class="org-name"><a href="https://publichealth.jhu.edu/faculty/3198/ahmed-hassoon" target="_blank" class="org-link">Ahmed Hassoon</a></div><div class="org-role">Assistant Research Professor</div><div class="org-inst">Johns Hopkins University Bloomberg School of Public Health</div><span class="org-email" id="e9"></span></div>
       </div>
       <div class="sci-box">
         <p class="sci-label">Scientific Committee</p>
