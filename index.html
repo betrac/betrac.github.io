@@ -356,14 +356,141 @@
     .org-email { font-family:'DM Mono',monospace; font-size:.68rem; color:var(--text-dim); display:block; margin-bottom:.8rem; text-decoration:none; }
     .org-email:hover { color:var(--accent); }
     .org-bio { font-size:.82rem; color:var(--text-muted); line-height:1.65; }
-    .sci-box {
-      margin-top:2.5rem; padding:1.4rem 1.8rem;
-      background:var(--surface2); border:1px solid var(--border); border-radius:8px;
+
+    /* ── RULES SECTION ── */
+    .rules-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem; margin-top: 3rem;
     }
-    .sci-label { font-family:'DM Serif Display',serif; font-size:1.4rem; color:var(--text); margin-bottom:.8rem; }
-    .sci-names { display:flex; flex-wrap:wrap; gap:.5rem 1.2rem; }
-    .sci-person { font-size:.82rem; color:var(--text); font-weight:500; }
-    .sci-org { color:var(--text-dim); }
+    @media(max-width:800px){ .rules-grid{grid-template-columns:1fr;} }
+    .rules-block {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 2rem; box-shadow: var(--shadow);
+    }
+    .rules-block-title {
+      font-family: 'DM Serif Display', serif; font-size: 1.2rem;
+      color: var(--text); margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .rule-list { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .rule-item {
+      display: flex; align-items: flex-start; gap: .75rem;
+      font-size: .875rem; color: var(--text-muted); line-height: 1.6;
+    }
+    .rule-icon { flex-shrink: 0; margin-top: .1rem; }
+    .rule-icon.ok  { color: var(--green); }
+    .rule-icon.no  { color: var(--red); }
+    .rule-icon.info { color: var(--accent); }
+    .rule-item strong { color: var(--text); }
+    .rule-divider {
+      border: none; border-top: 1px solid var(--border); margin: 1rem 0;
+    }
+    .whitelist-placeholder {
+      margin-top: 2rem; padding: 1.5rem 1.8rem;
+      background: var(--amber-bg); border: 1px dashed var(--amber-bdr);
+      border-radius: 10px;
+    }
+    .whitelist-placeholder-title {
+      font-family: 'DM Mono', monospace; font-size: .68rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: .6rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .whitelist-placeholder p {
+      font-size: .875rem; color: var(--text-muted); line-height: 1.7; margin-bottom: .5rem;
+    }
+    .whitelist-placeholder p:last-child { margin-bottom: 0; }
+    .whitelist-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    @media(max-width:600px){ .whitelist-cols{grid-template-columns:1fr;} }
+    .whitelist-col-box {
+      border: 1px dashed var(--amber-bdr); border-radius: 8px;
+      padding: 1rem 1.2rem;
+    }
+    .whitelist-col-label {
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: .5rem;
+    }
+    .whitelist-col-empty {
+      font-size: .8rem; color: var(--text-dim); font-style: italic;
+    }
+    .submission-box {
+      margin-top: 2rem; padding: 1.5rem 1.8rem;
+      background: var(--accent-bg); border: 1px solid var(--accent-bdr);
+      border-radius: 10px;
+    }
+    .submission-box-title {
+      font-family: 'DM Mono', monospace; font-size: .68rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: .8rem;
+    }
+    .submission-box p { font-size: .875rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── LEADERBOARD SECTION ── */
+    .lb-tabs {
+      display: flex; gap: .5rem; margin-top: 2.5rem; margin-bottom: 2rem;
+    }
+    .lb-tab {
+      padding: .55rem 1.4rem; border-radius: 6px;
+      font-family: 'DM Mono', monospace; font-size: .78rem;
+      letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--text-dim); transition: all .2s;
+    }
+    .lb-tab.active {
+      background: var(--accent); color: #fff; border-color: var(--accent);
+      box-shadow: 0 4px 14px rgba(37,99,235,.2);
+    }
+    .lb-tab:hover:not(.active) { border-color: var(--accent-bdr); color: var(--accent); background: var(--accent-bg); }
+    .lb-panel { display: none; }
+    .lb-panel.active { display: block; }
+    .lb-table {
+      width: 100%; border-collapse: collapse;
+      font-family: 'DM Mono', monospace; font-size: .82rem;
+      border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+    }
+    .lb-table th {
+      text-align: left; padding: .75rem 1rem;
+      background: var(--thead-bg); color: var(--text-dim);
+      letter-spacing: .08em; text-transform: uppercase; font-size: .66rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .lb-table th.right, .lb-table td.right { text-align: right; }
+    .lb-table td {
+      padding: .9rem 1rem; border-bottom: 1px solid var(--border);
+      color: var(--text-muted); vertical-align: middle;
+    }
+    .lb-table tr:last-child td { border-bottom: none; }
+    .lb-table tr:hover td { background: var(--accent-bg); }
+    .lb-rank {
+      font-weight: 700; color: var(--text-dim);
+      font-size: .75rem;
+    }
+    .lb-rank.gold   { color: #b8860b; }
+    .lb-rank.silver { color: #708090; }
+    .lb-rank.bronze { color: #8b5a2b; }
+    .lb-team { font-weight: 600; color: var(--text); font-size: .85rem; }
+    .lb-score { font-weight: 700; color: var(--accent); }
+    .lb-empty {
+      padding: 4rem 2rem; text-align: center;
+      color: var(--text-dim); font-size: .85rem;
+    }
+    .lb-empty .lb-empty-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .lb-empty .lb-empty-msg { font-size: .95rem; color: var(--text-muted); margin-bottom: .4rem; }
+    .lb-empty .lb-empty-sub { font-size: .8rem; color: var(--text-dim); }
+    .lb-status-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
+      padding: .2rem .7rem; border-radius: 100px;
+    }
+    .badge-upcoming { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-bdr); }
+    .badge-open     { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-bdr); }
+    .lb-info-row {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem; margin-bottom: 1.2rem;
+    }
+    .lb-info-text { font-size: .85rem; color: var(--text-muted); }
+
     footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:2.5rem; }
     .footer-inner { display:flex; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; flex-wrap:wrap; gap:1rem; }
     .footer-brand { font-family:'DM Serif Display',serif; font-size:1.2rem; color:var(--text-muted); }
@@ -371,6 +498,11 @@
     .footer-links a { font-size:.8rem; color:var(--text-dim); text-decoration:none; }
     .footer-links a:hover { color:var(--text-muted); }
     .footer-copy { font-size:.76rem; color:var(--text-dim); }
+    .footer-email {
+      font-family: 'DM Mono', monospace; font-size: .75rem;
+      color: var(--text-dim); text-decoration: none;
+    }
+    .footer-email:hover { color: var(--accent); }
     @media(max-width:700px) {
       nav { padding:1rem 1.5rem; }
       .nav-links { display:none; }
@@ -389,14 +521,15 @@
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#tracks">Tracks</a></li>
+        <li><a href="#rules">Rules</a></li>
         <li><a href="#data">Data</a></li>
+        <li><a href="#leaderboard">Leaderboard</a></li>
         <li><a href="#timeline">Schedule</a></li>
         <li><a href="#organizers">Organizers</a></li>
       </ul>
     </div>
     <div class="nav-right">
       <a href="https://huggingface.co/datasets/betrac" target="_blank" class="nav-cta">🤗 Dataset</a>
-      <a href="proposal.pdf" target="_blank" class="nav-cta" style="background:var(--surface2);color:var(--text);border:1px solid var(--border-med);">📄 Proposal</a>
     </div>
   </nav>
 
@@ -463,27 +596,28 @@
     </div>
   </section>
 
+  <!-- ABOUT -->
   <section id="about">
     <div class="container">
       <hr class="rule">
       <p class="section-label">About the Challenge</p>
       <h2 class="section-title">Bridging the Gap in<br><em>End-to-End Audio Reasoning</em></h2>
-      <p class="section-body" style="max-width:none;"><span style="display:block;white-space:nowrap;">Large audio language models (LALMs) have made impressive strides on short-context benchmarks, yet long-form audio reasoning remains an open frontier.</span><span style="display:block;white-space:nowrap;">On Synth-DoPaCo, E2E models show hallucination rates of <strong style="color:var(--red)">99–100%</strong> versus <strong style="color:var(--green)">21–23%</strong> for cascaded ASR pipelines — despite identical architectures.</span><span style="display:block;white-space:nowrap;">BeTraC isolates and attacks this gap head-on.</span></p>
+      <p class="section-body" style="max-width:none;">On Synth-DoPaCo, E2E models exhibit hallucination rates of <strong style="color:var(--red)">99–100%</strong> versus <strong style="color:var(--green)">21–23%</strong> for cascaded ASR pipelines — despite identical architectures. BeTraC targets this gap directly.</p>
       <div class="objectives-grid">
-        <div class="obj-card"><h3>Standardized Evaluation</h3><p>Establish a reproducible, community-wide benchmark for long-form E2E audio reasoning in clinical settings.</p></div>
-        <div class="obj-card"><h3>Quantify the Gap</h3><p>Precisely measure the performance delta between E2E and cascaded systems under controlled, identical conditions.</p></div>
-        <div class="obj-card"><h3>Stimulate Research</h3><p>Motivate new E2E model architectures and training strategies that close the hallucination and faithfulness gap.</p></div>
-        <div class="obj-card"><h3>Assess Generalization</h3><p>Evaluate how synthetic-trained systems transfer to real clinical audio via post-competition out-of-domain evaluation.</p></div>
+        <div class="obj-card"><h3>Standardized Evaluation</h3><p>A reproducible benchmark for long-form E2E audio reasoning in clinical settings.</p></div>
+        <div class="obj-card"><h3>Quantify the Gap</h3><p>Measure the delta between E2E and cascaded systems under controlled conditions.</p></div>
+        <div class="obj-card"><h3>Stimulate Research</h3><p>Drive new architectures and training strategies that close the hallucination gap.</p></div>
+        <div class="obj-card"><h3>Assess Generalization</h3><p>Test transfer from synthetic to real clinical audio via post-competition evaluation.</p></div>
       </div>
     </div>
   </section>
 
+  <!-- TRACKS -->
   <section id="tracks" class="bg-surface">
     <div class="container">
       <hr class="rule">
       <p class="section-label">Competition Tracks</p>
       <h2 class="section-title">Two Tracks,<br>One Hard Rule</h2>
-      <!-- ★ MODIFIED: "no intermediate transcription" is now bold+red with underline, sentence breaks after it -->
       <p class="section-body"><span style="white-space:nowrap;">Both tracks require <strong>open-weight models only</strong> and share the same constraint: <span class="no-transcript-highlight">no intermediate transcription</span>.</span><br>Systems must reason directly from raw audio to structured SOAP notes.</p>
       <div class="tracks-grid">
         <div class="track-card track-lw">
@@ -515,40 +649,90 @@
     </div>
   </section>
 
-  <section id="data">
+  <!-- RULES -->
+  <section id="rules">
+    <div class="container">
+      <hr class="rule">
+      <p class="section-label">Participation Rules</p>
+      <h2 class="section-title">Precise Rules &amp;<br><em>Eligibility</em></h2>
+      <p class="section-body">The following rules apply to all BeTraC submissions. Detailed guidelines will be published on the challenge website before the April 2 data release.</p>
+
+      <div class="rules-grid">
+
+        <!-- Hard Constraints -->
+        <div class="rules-block">
+          <div class="rules-block-title">🚫 Hard Constraints <span style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--red);letter-spacing:.1em;text-transform:uppercase;background:rgba(220,38,38,.07);border:1px solid rgba(220,38,38,.18);padding:.18rem .6rem;border-radius:100px;">Ineligible if violated</span></div>
+          <ul class="rule-list">
+            <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>No intermediate transcription</strong> at any pipeline stage — including chain-of-thought steps or tool outputs.</span></li>
+            <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>Open-weight models only.</strong> Proprietary API-based models (GPT-4o, Gemini, etc.) are not permitted.</span></li>
+            <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>Parameter cap enforced per track.</strong> Lightweight: ≤ 3B. Heavyweight: ≤ 30B. For MoE models, total (not active) parameter count applies.</span></li>
+            <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>No tool use in Lightweight Track.</strong> Agentic architectures are Heavyweight-only.</span></li>
+            <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>No use of withheld test labels</strong> at any stage.</span></li>
+          </ul>
+        </div>
+
+        <!-- Allowed & Required -->
+        <div class="rules-block">
+          <div class="rules-block-title">✅ Allowed &amp; Required</div>
+          <ul class="rule-list">
+            <li class="rule-item"><span class="rule-icon ok">✓</span><span><strong>Fine-tuning on the provided training split</strong> (7,200 conversations) is permitted.</span></li>
+            <li class="rule-item"><span class="rule-icon ok">✓</span><span><strong>Dev set</strong> may be used freely for model selection and tuning.</span></li>
+            <li class="rule-item"><span class="rule-icon ok">✓</span><span><strong>System description paper required</strong> for all ranked submissions (due July 8, 2026).</span></li>
+            <li class="rule-item"><span class="rule-icon ok">✓</span><span><strong>Multiple submissions per team</strong> are allowed; the best result counts.</span></li>
+            <li class="rule-item"><span class="rule-icon info">ℹ</span><span><strong>External data</strong> is subject to the whitelist policy below. Proposals due May 4.</span></li>
+          </ul>
+          <hr class="rule-divider">
+          <div class="rules-block-title" style="font-size:1rem;margin-bottom:.8rem;">📋 Submission Format</div>
+          <ul class="rule-list">
+            <li class="rule-item"><span class="rule-icon info">ℹ</span><span>Plain-text SOAP note with clearly labeled sections: <strong>S, O, A, P</strong>.</span></li>
+            <li class="rule-item"><span class="rule-icon info">ℹ</span><span>Each audio file must be processed independently — no cross-file context.</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Whitelist Placeholder -->
+      <div class="whitelist-placeholder">
+        <div class="whitelist-placeholder-title">⚠️ &nbsp;Under Discussion — Model &amp; Data Whitelist Policy</div>
+        <p>Whether to operate a formal whitelist of approved models and/or datasets is still being finalized by the organizing committee. This section will be updated once a decision is reached. Participants are encouraged to check back before the training data release on April 2, 2026, or contact the organizers directly.</p>
+        <div class="whitelist-cols">
+          <div class="whitelist-col-box">
+            <div class="whitelist-col-label">Approved Models</div>
+            <div class="whitelist-col-empty">TBD — whitelist policy under discussion</div>
+          </div>
+          <div class="whitelist-col-box">
+            <div class="whitelist-col-label">Approved External Datasets</div>
+            <div class="whitelist-col-empty">TBD — whitelist policy under discussion</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submission / Registration -->
+      <div class="submission-box">
+        <div class="submission-box-title">📬 &nbsp;Questions &amp; Registration</div>
+        <p>For questions about eligibility, rule clarifications, or to register your team's intent to participate, contact the organizing committee at <a href="mailto:betrac@googlegroups.com" style="color:var(--accent);font-family:'DM Mono',monospace;font-size:.85rem;">betrac@googlegroups.com</a>. Full submission instructions will be published alongside the data release on April 2, 2026.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DATA -->
+  <section id="data" class="bg-surface">
     <div class="container">
       <hr class="rule">
       <p class="section-label">Dataset</p>
       <h2 class="section-title" style="display:flex;align-items:center;gap:1rem;">Synth-DoPaCo <a href="#" target="_blank" style="font-family:'DM Mono',monospace;font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);border:1px solid var(--accent-bdr);padding:0.3rem 0.85rem;border-radius:100px;text-decoration:none;vertical-align:middle;white-space:nowrap;">📄 Paper</a></h2>
       <div class="data-layout">
         <div>
-          <p class="section-body" style="max-width:100%">All data is built on the <strong>Synth-DoPaCo</strong> dataset — fully synthetic doctor-patient conversations generated with open-weight, permissively licensed models. Speaker identities are strictly disjoint across splits.</p>
-          <div style="margin-top:1.5rem">
-            <p style="font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.7rem;">Generation Pipeline</p>
-            <div style="display:flex;flex-direction:column;gap:.45rem;">
-              <div class="model-chip">💬 Gemma3-27B-IT — dialogue generation</div>
-              <div class="model-chip">🔊 Qwen3-TTS-1.7B — speech synthesis</div>
-              <div class="model-chip">📝 Kimi K2 Thinking — SOAP note production</div>
-            </div>
-          </div>
-          <p style="margin-top:1.4rem;font-size:.88rem;color:var(--text-muted);line-height:1.7">Audio includes <strong style="color:var(--text)">two speakers</strong>, natural overlap patterns, <strong style="color:var(--text)">66 ambient sound classes</strong> (typing, door knocks…), room reverberation, and Opus codec compression artifacts.</p>
-          <a href="https://huggingface.co/datasets/betrac" target="_blank" class="hf-btn">🤗 &nbsp;View on Hugging Face</a>
+          <p class="section-body" style="max-width:100%">Fully synthetic doctor-patient conversations generated with open-weight, permissively licensed models. Speaker identities are strictly disjoint across splits. Audio features two speakers, 66 ambient sound classes, room reverberation, and Opus compression artifacts.</p>
+          <a href="https://huggingface.co/datasets/betrac" target="_blank" class="hf-btn" style="margin-top:1.5rem;">🤗 &nbsp;View on Hugging Face</a>
         </div>
         <div>
-          <table class="data-table">
-            <thead><tr><th>Split</th><th>Conversations</th><th>Hours</th><th>Includes</th></tr></thead>
-            <tbody>
-              <tr><td class="split-train">Train</td><td>7,200</td><td>~1,087</td><td>Audio + SOAP notes</td></tr>
-              <tr><td class="split-dev">Dev</td><td>400</td><td>~59</td><td>Audio + SOAP notes</td></tr>
-              <tr><td class="split-test">Test</td><td>1,200</td><td>~183</td><td>Audio only *</td></tr>
-            </tbody>
-          </table>
-          <p style="font-size:.71rem;color:var(--text-dim);margin-top:.5rem;font-family:'DM Mono',monospace;">* Reference SOAP notes withheld for blind evaluation.</p>
-          <div style="margin-top:2rem">
+          <div style="margin-top:0">
             <p style="font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.7rem;">✍🏻 Evaluation Metrics</p>
             <div class="eval-pair">
-              <div class="eval-card primary"><div class="elabel">Primary</div><div class="ename">Open Medical Concept F1</div><div class="edesc">MeSH keyword matching + NER via scispaCy</div></div>
-              <div class="eval-card"><div class="elabel">Secondary</div><div class="ename">ROUGE F1</div><div class="edesc">R-2, R-3, R-L against reference notes</div></div>
+              <div class="eval-card primary"><div class="elabel">Primary</div><div class="ename">Open Medical Concept F1</div><div class="edesc">MeSH keyword matching + NER via scispaCy</div><a href="https://github.com/Play-Your-Part/beyond-transcription-challenge-evaluation-harness" target="_blank" style="display:inline-flex;align-items:center;gap:.35rem;margin-top:.6rem;font-family:'DM Mono',monospace;font-size:.68rem;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-bdr);">⚙ btc-eval harness</a></div>
+              <div class="eval-card"><div class="elabel">Secondary</div><div class="ename">ROUGE F1</div><div class="edesc">R-2, R-3, R-L against reference notes</div><a href="https://github.com/Play-Your-Part/beyond-transcription-challenge-evaluation-harness" target="_blank" style="display:inline-flex;align-items:center;gap:.35rem;margin-top:.6rem;font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text-dim);text-decoration:none;border-bottom:1px solid var(--border-med);">⚙ btc-eval harness</a></div>
             </div>
           </div>
         </div>
@@ -557,18 +741,99 @@
         <p style="font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;">Post-Competition Analysis (Top 5 per Track)</p>
         <div class="postcomp-grid">
           <div><p style="font-weight:600;color:var(--text);margin-bottom:.4rem;">LLM-as-a-Judge</p><p style="font-size:.85rem;color:var(--text-muted);line-height:1.7">Reference-free scoring across 4 dimensions (1–5): Faithfulness, Coverage, Structure, and Conciseness. Additional analyses include over-/under-medicalization, over-specificity, missed facts, critical omissions, duplicated content, unsupported claims, and contradictions.</p></div>
-          <div><p style="font-weight:600;color:var(--text);margin-bottom:.4rem;">Out-of-Domain Generalization</p><p style="font-size:.85rem;color:var(--text-muted);line-height:1.7">20–30 conversations from Fareez et al. (272 real OSCE respiratory interviews) — tests whether gains on synthetic data transfer to real audio.</p></div>
+          <div><p style="font-weight:600;color:var(--text);margin-bottom:.4rem;">Out-of-Domain Generalization</p><p style="font-size:.85rem;color:var(--text-muted);line-height:1.7">Evaluated on 20–30 real OSCE interviews (Fareez et al.) to test transfer from synthetic to real recorded audio.</p></div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- LEADERBOARD -->
+  <section id="leaderboard">
+    <div class="container">
+      <hr class="rule">
+      <p class="section-label">Leaderboard</p>
+      <h2 class="section-title">Rankings</h2>
+      <p class="section-body">Ranked by <strong>Open Medical Concept F1</strong> (primary), with ROUGE-2/3/L as secondary.<br>Winners determined separately per track.</p>
+
+      <div class="lb-tabs">
+        <button class="lb-tab active" onclick="switchTab('lw')">⚡ Lightweight Track <span style="font-size:.65rem;opacity:.7;margin-left:.3rem;">≤ 3B</span></button>
+        <button class="lb-tab" onclick="switchTab('hw')">🔬 Heavyweight Track <span style="font-size:.65rem;opacity:.7;margin-left:.3rem;">≤ 30B</span></button>
+      </div>
+
+      <!-- Lightweight Panel -->
+      <div class="lb-panel active" id="panel-lw">
+        <div class="lb-info-row">
+          <span class="lb-info-text">Ranked by Open Medical Concept F1 · Lightweight Track (≤ 3B parameters)</span>
+          <span class="lb-status-badge badge-upcoming">⏳ Submissions open June 24</span>
+        </div>
+        <table class="lb-table">
+          <thead>
+            <tr>
+              <th style="width:3rem;">#</th>
+              <th>Team</th>
+              <th>System / Model</th>
+              <th class="right">Med Concept F1 ↓</th>
+              <th class="right">ROUGE-2</th>
+              <th class="right">ROUGE-L</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="6">
+                <div class="lb-empty">
+                  <div class="lb-empty-icon">🏁</div>
+                  <div class="lb-empty-msg">No submissions yet</div>
+                  <div class="lb-empty-sub">Results will appear here after the submission deadline (June 24, 2026).</div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:.71rem;color:var(--text-dim);margin-top:.6rem;font-family:'DM Mono',monospace;">* Baseline (Qwen2.5-Omni-3B) will be published alongside training data release on April 2, 2026.</p>
+      </div>
+
+      <!-- Heavyweight Panel -->
+      <div class="lb-panel" id="panel-hw">
+        <div class="lb-info-row">
+          <span class="lb-info-text">Ranked by Open Medical Concept F1 · Heavyweight Track (≤ 30B parameters)</span>
+          <span class="lb-status-badge badge-upcoming">⏳ Submissions open June 24</span>
+        </div>
+        <table class="lb-table">
+          <thead>
+            <tr>
+              <th style="width:3rem;">#</th>
+              <th>Team</th>
+              <th>System / Model</th>
+              <th class="right">Med Concept F1 ↓</th>
+              <th class="right">ROUGE-2</th>
+              <th class="right">ROUGE-L</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="6">
+                <div class="lb-empty">
+                  <div class="lb-empty-icon">🏁</div>
+                  <div class="lb-empty-msg">No submissions yet</div>
+                  <div class="lb-empty-sub">Results will appear here after the submission deadline (June 24, 2026).</div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:.71rem;color:var(--text-dim);margin-top:.6rem;font-family:'DM Mono',monospace;">* Baseline (best of Qwen2.5-Omni-3B / Qwen3-Omni-30B variants) will be published alongside training data release on April 2, 2026.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
   <section id="timeline" class="bg-surface">
     <div class="container">
       <hr class="rule">
       <p class="section-label">Schedule</p>
       <h2 class="section-title">Key Milestones</h2>
-      <div class="tl-wrap">
+      <div class="tl-wrap" style="grid-template-columns:1fr;max-width:600px;">
         <div class="timeline">
           <div class="timeline-item"><div class="tldot active"></div><div class="tldate">April 2, 2026</div><div class="tllabel">Training + Dev Data Release</div><div class="tlsub">Audio + reference SOAP notes published on Hugging Face</div></div>
           <div class="timeline-item"><div class="tldot"></div><div class="tldate">May 4, 2026</div><div class="tllabel">Open-Source Proposals Deadline</div><div class="tlsub">Participants proposing additional open-source models or data</div></div>
@@ -576,49 +841,32 @@
           <div class="timeline-item"><div class="tldot"></div><div class="tldate">July 1, 2026</div><div class="tllabel">Results Announcement</div><div class="tlsub">Automated metric results released for all submissions</div></div>
           <div class="timeline-item"><div class="tldot"></div><div class="tldate">July 8, 2026</div><div class="tllabel">Challenge Paper Submission</div><div class="tlsub">System description papers due for IEEE SLT 2026 proceedings</div></div>
         </div>
-        <div class="glance-box">
-          <p style="font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1.2rem;">Task at a Glance</p>
-          <p class="gkey">Input</p>
-          <p class="gval">Raw single-channel audio waveform (avg. ~9 min, range 2–47 min)</p>
-          <hr class="glance-sep">
-          <p class="gkey">Output — Structured SOAP Note</p>
-          <div class="soap-row"><span class="soap-key">S</span><span>Subjective: chief complaint, HPI, review of systems</span></div>
-          <div class="soap-row"><span class="soap-key">O</span><span>Objective: physical examination findings</span></div>
-          <div class="soap-row"><span class="soap-key">A</span><span>Assessment: clinical impression</span></div>
-          <div class="soap-row"><span class="soap-key">P</span><span>Plan: proposed next steps</span></div>
-          <hr class="glance-sep">
-          <p class="gkey">Hard Rule</p>
-          <p class="hard-rule">No intermediate transcript or ASR output at any pipeline stage.</p>
-        </div>
       </div>
     </div>
   </section>
 
+  <!-- ORGANIZERS -->
   <section id="organizers">
     <div class="container">
       <hr class="rule">
       <p class="section-label">Team</p>
       <h2 class="section-title">Organizers</h2>
       <div class="org-grid">
-        <div class="org-card"><div class="org-name"><a href="https://aperrault.github.io/" target="_blank" class="org-link">Andrew Perrault</a></div><div class="org-role">Assistant Professor of CSE</div><div class="org-inst">The Ohio State University</div><span class="org-email" id="e1"></span></div>
-        <div class="org-card"><div class="org-name"><a href="https://amyyyyeah.github.io/" target="_blank" class="org-link">Jiyun (Amy) Chun</a></div><div class="org-role">Ph.D. Student</div><div class="org-inst">The Ohio State University</div><span class="org-email" id="e2"></span></div>
-        <div class="org-card"><div class="org-name"><a href="https://popcornell.github.io/" target="_blank" class="org-link">Samuele Cornell</a></div><div class="org-role">Postdoctoral Research Associate</div><div class="org-inst">Carnegie Mellon University</div><span class="org-email" id="e3"></span></div>
-        <div class="org-card"><div class="org-name"><a href="https://siddhu001.github.io/" target="_blank" class="org-link">Siddhant Arora</a></div><div class="org-role">Ph.D. Student</div><div class="org-inst">Carnegie Mellon University</div><span class="org-email" id="e4"></span></div>
-        <div class="org-card"><div class="org-name"><a href="https://scholar.google.com/citations?user=FaisAH0AAAAJ&hl=en" target="_blank" class="org-link">Syed-Amad Hussain</a></div><div class="org-role">Ph.D. Candidate</div><div class="org-inst">The Ohio State University</div><span class="org-email" id="e5"></span></div>
-        <div class="org-card"><div class="org-name"><a href="https://scholar.google.com/citations?user=gyDVO1IAAAAJ&hl=en" target="_blank" class="org-link">Thomas Schaaf</a></div><div class="org-role">Principal Research Scientist</div><div class="org-inst">Solventum / CMU LTI</div><span class="org-email" id="e6"></span></div>
-        <div class="org-card"><div class="org-name"><a href="https://scholar.google.com/citations?user=t1g04OYAAAAJ&hl=de" target="_blank" class="org-link">Markus Müller</a></div><div class="org-role">Senior Applied Scientist</div><div class="org-inst">Amazon</div><span class="org-email" id="e7"></span></div>
-        <div class="org-card"><div class="org-name"><a href="https://www.clsp.jhu.edu/faculty/paola-garcia/" target="_blank" class="org-link">Leibny Paola Garcia</a></div><div class="org-role">Assistant Research Scientist</div><div class="org-inst">Johns Hopkins University (CLSP)</div><span class="org-email" id="e8"></span></div>
-        <div class="org-card"><div class="org-name"><a href="https://publichealth.jhu.edu/faculty/3198/ahmed-hassoon" target="_blank" class="org-link">Ahmed Hassoon (MD, MPH)</a></div><div class="org-role">Assistant Research Professor</div><div class="org-inst">Johns Hopkins University Bloomberg School of Public Health</div><span class="org-email" id="e9"></span></div>
+        <div class="org-card"><div class="org-name"><a href="https://aperrault.github.io/" target="_blank" class="org-link">Andrew Perrault</a></div><div class="org-role">Assistant Professor of CSE</div><div class="org-inst">The Ohio State University</div></div>
+        <div class="org-card"><div class="org-name"><a href="https://amyyyyeah.github.io/" target="_blank" class="org-link">Jiyun (Amy) Chun</a></div><div class="org-role">Ph.D. Student</div><div class="org-inst">The Ohio State University</div></div>
+        <div class="org-card"><div class="org-name"><a href="https://popcornell.github.io/" target="_blank" class="org-link">Samuele Cornell</a></div><div class="org-role">Postdoctoral Research Associate</div><div class="org-inst">Carnegie Mellon University</div></div>
+        <div class="org-card"><div class="org-name"><a href="https://siddhu001.github.io/" target="_blank" class="org-link">Siddhant Arora</a></div><div class="org-role">Ph.D. Student</div><div class="org-inst">Carnegie Mellon University</div></div>
+        <div class="org-card"><div class="org-name"><a href="https://scholar.google.com/citations?user=FaisAH0AAAAJ&hl=en" target="_blank" class="org-link">Syed-Amad Hussain</a></div><div class="org-role">Ph.D. Candidate</div><div class="org-inst">The Ohio State University</div><div class="org-inst" style="margin-top:.2rem;">Nationwide Children's Hospital</div></div>
+        <div class="org-card"><div class="org-name"><a href="https://scholar.google.com/citations?user=gyDVO1IAAAAJ&hl=en" target="_blank" class="org-link">Thomas Schaaf</a></div><div class="org-role">Principal Research Scientist</div><div class="org-inst">Solventum / CMU LTI</div></div>
+        <div class="org-card"><div class="org-name"><a href="https://scholar.google.com/citations?user=t1g04OYAAAAJ&hl=de" target="_blank" class="org-link">Markus Müller</a></div><div class="org-role">Senior Applied Scientist</div><div class="org-inst">Amazon</div></div>
+        <div class="org-card"><div class="org-name"><a href="https://www.clsp.jhu.edu/faculty/paola-garcia/" target="_blank" class="org-link">Leibny Paola Garcia</a></div><div class="org-role">Assistant Research Scientist</div><div class="org-inst">Johns Hopkins University (CLSP)</div></div>
+        <div class="org-card"><div class="org-name"><a href="https://publichealth.jhu.edu/faculty/3198/ahmed-hassoon" target="_blank" class="org-link">Ahmed Hassoon (MD, MPH)</a></div><div class="org-role">Assistant Research Professor</div><div class="org-inst">Johns Hopkins University Bloomberg School of Public Health</div></div>
       </div>
-      <div class="sci-box">
-        <p class="sci-label">Scientific Committee</p>
-        <div class="sci-names">
-          <span class="sci-person">Ehsan Variani <span class="sci-org">(Google)</span></span>
-          <span class="sci-person">Thejaswi Muniyappa <span class="sci-org">(Amazon)</span></span>
-          <span class="sci-person">Arindam Ghosh <span class="sci-org">(Solventum)</span></span>
-          <span class="sci-person">John Glover <span class="sci-org">(Solventum)</span></span>
-          <span class="sci-person">Ralf Schlüter <span class="sci-org">(RWTH Aachen University)</span></span>
-        </div>
+      <!-- Contact box -->
+      <div style="margin-top:2.5rem;padding:1.4rem 1.8rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;">
+        <span style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--text);">Contact</span>
+        <span style="font-size:.88rem;color:var(--text-muted);">For general inquiries, rule clarifications, and team registration, reach the organizing committee at</span>
+        <a href="mailto:betrac@googlegroups.com" style="font-family:'DM Mono',monospace;font-size:.85rem;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-bdr);">betrac@googlegroups.com</a>
       </div>
     </div>
   </section>
@@ -629,38 +877,29 @@
       <ul class="footer-links">
         <li><a href="#about">About</a></li>
         <li><a href="#tracks">Tracks</a></li>
+        <li><a href="#rules">Rules</a></li>
         <li><a href="#data">Data</a></li>
+        <li><a href="#leaderboard">Leaderboard</a></li>
         <li><a href="#timeline">Schedule</a></li>
         <li><a href="https://huggingface.co/datasets/betrac" target="_blank">🤗 Hugging Face</a></li>
         <li><a href="https://betrac.github.io" target="_blank">GitHub</a></li>
       </ul>
-      <p class="footer-copy">Beyond Transcription Challenge · IEEE SLT 2026</p>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.3rem;">
+        <p class="footer-copy">Beyond Transcription Challenge · IEEE SLT 2026</p>
+        <a href="mailto:betrac@googlegroups.com" class="footer-email">betrac@googlegroups.com</a>
+      </div>
     </div>
   </footer>
 
   <script>
-    const emails = {
-      e1: ['perrault.17', 'osu.edu'],
-      e2: ['chun.203', 'osu.edu'],
-      e3: ['scornell', 'andrew.cmu.edu'],
-      e4: ['siddhana', 'andrew.cmu.edu'],
-      e5: ['amad.hussain', 'nationwidechildrens.org'],
-      e6: ['thomas.schaaf', 'ieee.org'],
-      e7: ['markus.mueller', 'ieee.org'],
-      e8: ['lgarci27', 'jhu.edu'],
-      e9: ['ahassoo1', 'jhu.edu'],
-    };
-    Object.entries(emails).forEach(([id, [u, d]]) => {
-      const addr = u + '\u0040' + d;
-      const el = document.getElementById(id);
-      if (el) {
-        const a = document.createElement('a');
-        a.href = 'mailto:' + addr;
-        a.className = 'org-email';
-        a.textContent = addr;
-        el.replaceWith(a);
-      }
-    });
+    // Leaderboard tab switching
+    function switchTab(track) {
+      document.querySelectorAll('.lb-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.lb-panel').forEach(p => p.classList.remove('active'));
+      const idx = track === 'lw' ? 0 : 1;
+      document.querySelectorAll('.lb-tab')[idx].classList.add('active');
+      document.getElementById('panel-' + track).classList.add('active');
+    }
   </script>
 </body>
 </html>
