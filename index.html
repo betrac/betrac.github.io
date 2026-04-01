@@ -34,6 +34,8 @@
       --shadow:     0 1px 3px rgba(0,0,0,0.06), 0 4px 14px rgba(0,0,0,0.05);
       --track-lw:   linear-gradient(135deg, rgba(5,150,105,0.07), rgba(16,185,129,0.02));
       --track-hw:   linear-gradient(135deg, rgba(37,99,235,0.08), rgba(99,102,241,0.02));
+      --zulip:      #6492FE;
+      --zulip-dark: #4f7af0;
     }
     *, *::before, *::after {
       box-sizing: border-box; margin: 0; padding: 0;
@@ -139,6 +141,12 @@
       flex-wrap: wrap; justify-content: center;
       animation: fadeUp 0.7s 0.4s ease both;
     }
+    .hero-community-note {
+      font-size: .78rem; color: var(--text-dim);
+      margin-top: .6rem; font-family: 'DM Mono', monospace;
+      letter-spacing: .03em;
+      animation: fadeUp 0.7s 0.45s ease both;
+    }
     @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
     .btn {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -155,6 +163,14 @@
       border: 1px solid var(--border-med);
     }
     .btn-secondary:hover { border-color: var(--accent-bdr); background: var(--accent-bg); }
+    /* ── Zulip join button ── */
+    .btn-zulip {
+      background: var(--zulip); color: #fff;
+      border: none;
+      box-shadow: 0 0 24px rgba(100,146,254,0.28);
+    }
+    .btn-zulip:hover { background: var(--zulip-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(100,146,254,0.35); }
+    .btn-zulip svg { flex-shrink: 0; }
     .stats-row {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
       gap: 1px; background: var(--border);
@@ -232,7 +248,6 @@
     }
     .baseline-note strong { color: var(--amber); }
 
-    /* ── NO INTERMEDIATE TRANSCRIPTION highlight ── */
     .no-transcript-highlight {
       display: inline;
       color: var(--red);
@@ -357,7 +372,6 @@
     .org-email:hover { color:var(--accent); }
     .org-bio { font-size:.82rem; color:var(--text-muted); line-height:1.65; }
 
-    /* ── RULES SECTION ── */
     .rules-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 2rem; margin-top: 3rem;
@@ -426,7 +440,6 @@
     }
     .submission-box p { font-size: .875rem; color: var(--text-muted); line-height: 1.7; }
 
-    /* ── LEADERBOARD SECTION ── */
     .lb-tabs {
       display: flex; gap: .5rem; margin-top: 2.5rem; margin-bottom: 2rem;
     }
@@ -462,10 +475,7 @@
     }
     .lb-table tr:last-child td { border-bottom: none; }
     .lb-table tr:hover td { background: var(--accent-bg); }
-    .lb-rank {
-      font-weight: 700; color: var(--text-dim);
-      font-size: .75rem;
-    }
+    .lb-rank { font-weight: 700; color: var(--text-dim); font-size: .75rem; }
     .lb-rank.gold   { color: #b8860b; }
     .lb-rank.silver { color: #708090; }
     .lb-rank.bronze { color: #8b5a2b; }
@@ -583,10 +593,25 @@
       </svg>
     </div>
     <p class="hero-desc" style="max-width:none;width:100%;text-align:center;"><span style="display:block;white-space:nowrap;">Can end-to-end audio models reason faithfully over long clinical conversations — without ever producing a transcript?</span><span style="display:block;white-space:nowrap;">BeTraC challenges participants to generate structured SOAP notes directly from raw doctor-patient audio.</span></p>
+
+    <!-- ── CTA BUTTONS ── -->
     <div class="hero-actions">
       <a href="https://huggingface.co/datasets/betrac" target="_blank" class="btn btn-primary">🤗 Access Dataset on Hugging Face</a>
+      <!-- Zulip community join button -->
+      <a href="https://betrac.zulipchat.com/join/4znrm2sqi7f2ng5hdcyi63lh/" target="_blank" class="btn btn-zulip">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0;">
+          <circle cx="12" cy="12" r="10" fill="rgba(255,255,255,0.18)"/>
+          <path d="M7.5 8.25h6.75L8.25 13.5h7.5" stroke="#fff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Join Community on Zulip
+      </a>
       <a href="#about" class="btn btn-secondary">Learn More →</a>
     </div>
+    <!-- Zulip note -->
+    <p class="hero-community-note">
+      💬 New participants joining via the Zulip link are automatically subscribed to all public channels.
+    </p>
+
     <div class="stats-row">
       <div class="stat-cell"><div class="stat-number">8,800<span class="stat-unit"> conv.</span></div><div class="stat-label">Total Conversations</div></div>
       <div class="stat-cell"><div class="stat-number">~1,329<span class="stat-unit"> hrs</span></div><div class="stat-label">Total Audio</div></div>
@@ -658,8 +683,6 @@
       <p class="section-body">The following rules apply to all BeTraC submissions. Detailed guidelines will be published on the challenge website before the April 2 data release.</p>
 
       <div class="rules-grid">
-
-        <!-- Hard Constraints -->
         <div class="rules-block">
           <div class="rules-block-title">🚫 Hard Constraints <span style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--red);letter-spacing:.1em;text-transform:uppercase;background:rgba(220,38,38,.07);border:1px solid rgba(220,38,38,.18);padding:.18rem .6rem;border-radius:100px;">Ineligible if violated</span></div>
           <ul class="rule-list">
@@ -671,7 +694,6 @@
           </ul>
         </div>
 
-        <!-- Allowed & Required -->
         <div class="rules-block">
           <div class="rules-block-title">✅ Allowed &amp; Required</div>
           <ul class="rule-list">
@@ -688,10 +710,8 @@
             <li class="rule-item"><span class="rule-icon info">ℹ</span><span>Each audio file must be processed independently — no cross-file context.</span></li>
           </ul>
         </div>
-
       </div>
 
-      <!-- Whitelist Placeholder -->
       <div class="whitelist-placeholder">
         <div class="whitelist-placeholder-title">⚠️ &nbsp;Under Discussion — Model &amp; Data Whitelist Policy</div>
         <p>Whether to operate a formal whitelist of approved models and/or datasets is still being finalized by the organizing committee. This section will be updated once a decision is reached. Participants are encouraged to check back before the training data release on April 2, 2026, or contact the organizers directly.</p>
@@ -707,7 +727,6 @@
         </div>
       </div>
 
-      <!-- Submission / Registration -->
       <div class="submission-box">
         <div class="submission-box-title">📬 &nbsp;Questions &amp; Registration</div>
         <p>For questions about eligibility, rule clarifications, or to register your team's intent to participate, contact the organizing committee at <a href="mailto:betrac@googlegroups.com" style="color:var(--accent);font-family:'DM Mono',monospace;font-size:.85rem;">betrac@googlegroups.com</a>. Full submission instructions will be published alongside the data release on April 2, 2026.</p>
@@ -760,7 +779,6 @@
         <button class="lb-tab" onclick="switchTab('hw')">🔬 Heavyweight Track <span style="font-size:.65rem;opacity:.7;margin-left:.3rem;">≤ 30B</span></button>
       </div>
 
-      <!-- Lightweight Panel -->
       <div class="lb-panel active" id="panel-lw">
         <div class="lb-info-row">
           <span class="lb-info-text">Ranked by Open Medical Concept F1 · Lightweight Track (≤ 3B parameters)</span>
@@ -792,7 +810,6 @@
         <p style="font-size:.71rem;color:var(--text-dim);margin-top:.6rem;font-family:'DM Mono',monospace;">* Baseline (Qwen2.5-Omni-3B) will be published alongside training data release on April 2, 2026.</p>
       </div>
 
-      <!-- Heavyweight Panel -->
       <div class="lb-panel" id="panel-hw">
         <div class="lb-info-row">
           <span class="lb-info-text">Ranked by Open Medical Concept F1 · Heavyweight Track (≤ 30B parameters)</span>
@@ -862,7 +879,6 @@
         <div class="org-card"><div class="org-name"><a href="https://www.clsp.jhu.edu/faculty/paola-garcia/" target="_blank" class="org-link">Leibny Paola Garcia</a></div><div class="org-role">Assistant Research Scientist</div><div class="org-inst">Johns Hopkins University (CLSP)</div></div>
         <div class="org-card"><div class="org-name"><a href="https://publichealth.jhu.edu/faculty/3198/ahmed-hassoon" target="_blank" class="org-link">Ahmed Hassoon (MD, MPH)</a></div><div class="org-role">Assistant Research Professor</div><div class="org-inst">Johns Hopkins University Bloomberg School of Public Health</div></div>
       </div>
-      <!-- Contact box -->
       <div style="margin-top:2.5rem;padding:1.4rem 1.8rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;">
         <span style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--text);">Contact</span>
         <span style="font-size:.88rem;color:var(--text-muted);">For general inquiries, rule clarifications, and team registration, reach the organizing committee at</span>
@@ -892,7 +908,6 @@
   </footer>
 
   <script>
-    // Leaderboard tab switching
     function switchTab(track) {
       document.querySelectorAll('.lb-tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.lb-panel').forEach(p => p.classList.remove('active'));
