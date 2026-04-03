@@ -592,7 +592,7 @@
         <rect class="wvb wv-bar" x="312" y="16" width="4" height="16" rx="2" style="animation-delay:.07s"/>
       </svg>
     </div>
-    <p class="hero-desc" style="max-width:none;width:100%;text-align:center;"><span style="display:block;white-space:nowrap;">Can end-to-end audio models reason faithfully over long clinical conversations — without ever producing a transcript?</span><span style="display:block;white-space:nowrap;">BeTraC challenges participants to generate structured SOAP notes directly from raw doctor-patient audio.</span></p>
+    <p class="hero-desc">Generate SOAP notes directly from doctor-patient conversation audio — no intermediate transcription allowed.</p>
 
     <!-- ── CTA BUTTONS ── -->
     <div class="hero-actions">
@@ -607,10 +607,6 @@
       </a>
       <a href="#about" class="btn btn-secondary">Learn More →</a>
     </div>
-    <!-- Zulip note -->
-    <p class="hero-community-note">
-      💬 New participants joining via the Zulip link are automatically subscribed to all public channels.
-    </p>
 
     <div class="stats-row">
       <div class="stat-cell"><div class="stat-number">8,800<span class="stat-unit"> conv.</span></div><div class="stat-label">Total Conversations</div></div>
@@ -625,15 +621,9 @@
   <section id="about">
     <div class="container">
       <hr class="rule">
-      <p class="section-label">About the Challenge</p>
-      <h2 class="section-title">Bridging the Gap in<br><em>End-to-End Audio Reasoning</em></h2>
-      <p class="section-body" style="max-width:none;">On Synth-DoPaCo, E2E models exhibit hallucination rates of <strong style="color:var(--red)">99–100%</strong> versus <strong style="color:var(--green)">21–23%</strong> for cascaded ASR pipelines — despite identical architectures. BeTraC targets this gap directly.</p>
-      <div class="objectives-grid">
-        <div class="obj-card"><h3>Standardized Evaluation</h3><p>A reproducible benchmark for long-form E2E audio reasoning in clinical settings.</p></div>
-        <div class="obj-card"><h3>Quantify the Gap</h3><p>Measure the delta between E2E and cascaded systems under controlled conditions.</p></div>
-        <div class="obj-card"><h3>Stimulate Research</h3><p>Drive new architectures and training strategies that close the hallucination gap.</p></div>
-        <div class="obj-card"><h3>Assess Generalization</h3><p>Test transfer from synthetic to real clinical audio via post-competition evaluation.</p></div>
-      </div>
+      <p class="section-label">About</p>
+      <h2 class="section-title">The Challenge</h2>
+      <p class="section-body" style="max-width:none;">On the Synth-DoPaCo dataset, end-to-end models produce unsupported claim rates of <strong style="color:var(--red)">99–100%</strong>, compared to <strong style="color:var(--green)">21–23%</strong> for cascaded ASR-then-summarize pipelines. BeTraC targets this gap.</p>
     </div>
   </section>
 
@@ -641,12 +631,12 @@
   <section id="tracks" class="bg-surface">
     <div class="container">
       <hr class="rule">
-      <p class="section-label">Competition Tracks</p>
-      <h2 class="section-title">Two Tracks,<br>One Hard Rule</h2>
-      <p class="section-body"><span style="white-space:nowrap;">Both tracks require <strong>open-weight models only</strong> and share the same constraint: <span class="no-transcript-highlight">no intermediate transcription</span>.</span><br>Systems must reason directly from raw audio to structured SOAP notes.</p>
+      <p class="section-label">Tracks</p>
+      <h2 class="section-title">Competition Tracks</h2>
+      <p class="section-body">Both tracks require <strong>open-weight models only</strong> and share the same constraint: <span class="no-transcript-highlight">no intermediate transcription</span>.</p>
       <div class="tracks-grid">
         <div class="track-card track-lw">
-          <div class="track-icon">⚡</div>
+
           <div class="track-name">Lightweight Track</div>
           <div class="track-pill pill-green">≤ 3B Parameters</div>
           <ul class="track-features">
@@ -654,11 +644,11 @@
             <li><span>✓</span> Direct E2E audio-to-SOAP pipeline</li>
             <li><span>✗</span> No tool use or agentic pipelines</li>
             <li><span>✗</span> No intermediate transcription at any stage</li>
-            <li style="margin-top:.4rem;color:var(--green)"><span>📌</span> Baseline: Qwen2.5-Omni-3B</li>
+            <li style="margin-top:.4rem;color:var(--green)"><span></span> Baseline: Qwen2.5-Omni-3B</li>
           </ul>
         </div>
         <div class="track-card track-hw">
-          <div class="track-icon">🔬</div>
+
           <div class="track-name">Heavyweight Track</div>
           <div class="track-pill pill-blue">≤ 30B Parameters</div>
           <ul class="track-features">
@@ -666,7 +656,7 @@
             <li><span>✓</span> Tool use &amp; agentic architectures allowed</li>
             <li><span>✓</span> Chain-of-thought agents, RAG pipelines</li>
             <li><span>✗</span> No intermediate transcription at any stage</li>
-            <li style="margin-top:.4rem;color:var(--accent)"><span>📌</span> Baseline: Best of Qwen2.5-Omni-3B / Qwen3-Omni-30B variants</li>
+            <li style="margin-top:.4rem;color:var(--accent)"><span></span> Baseline: Best of Qwen2.5-Omni-3B / Qwen3-Omni-30B variants</li>
           </ul>
         </div>
       </div>
@@ -679,12 +669,11 @@
     <div class="container">
       <hr class="rule">
       <p class="section-label">Participation Rules</p>
-      <h2 class="section-title">Precise Rules &amp;<br><em>Eligibility</em></h2>
-      <p class="section-body">The following rules apply to all BeTraC submissions. Detailed guidelines will be published on the challenge website before the April 2 data release.</p>
+      <h2 class="section-title">Rules</h2>
 
       <div class="rules-grid">
         <div class="rules-block">
-          <div class="rules-block-title">🚫 Hard Constraints <span style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--red);letter-spacing:.1em;text-transform:uppercase;background:rgba(220,38,38,.07);border:1px solid rgba(220,38,38,.18);padding:.18rem .6rem;border-radius:100px;">Ineligible if violated</span></div>
+          <div class="rules-block-title">Hard Constraints <span style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--red);letter-spacing:.1em;text-transform:uppercase;background:rgba(220,38,38,.07);border:1px solid rgba(220,38,38,.18);padding:.18rem .6rem;border-radius:100px;">Ineligible if violated</span></div>
           <ul class="rule-list">
             <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>No intermediate transcription</strong> at any pipeline stage — including chain-of-thought steps or tool outputs.</span></li>
             <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>Open-weight models only.</strong> Proprietary API-based models (GPT-4o, Gemini, etc.) are not permitted.</span></li>
@@ -695,7 +684,7 @@
         </div>
 
         <div class="rules-block">
-          <div class="rules-block-title">✅ Allowed &amp; Required</div>
+          <div class="rules-block-title">Allowed &amp; Required</div>
           <ul class="rule-list">
             <li class="rule-item"><span class="rule-icon ok">✓</span><span><strong>Fine-tuning on the provided training split</strong> (7,200 conversations) is permitted.</span></li>
             <li class="rule-item"><span class="rule-icon ok">✓</span><span><strong>Dev set</strong> may be used freely for model selection and tuning.</span></li>
@@ -704,32 +693,22 @@
             <li class="rule-item"><span class="rule-icon info">ℹ</span><span><strong>External data</strong> is subject to the whitelist policy below. Proposals due May 4.</span></li>
           </ul>
           <hr class="rule-divider">
-          <div class="rules-block-title" style="font-size:1rem;margin-bottom:.8rem;">📋 Submission Format</div>
+          <div class="rules-block-title" style="font-size:1rem;margin-bottom:.8rem;">Submission Format</div>
           <ul class="rule-list">
-            <li class="rule-item"><span class="rule-icon info">ℹ</span><span>Plain-text SOAP note with clearly labeled sections: <strong>S, O, A, P</strong>.</span></li>
+            <li class="rule-item"><span class="rule-icon info">ℹ</span><span>Plain-text SOAP note (see reference notes in training data for expected format).</span></li>
             <li class="rule-item"><span class="rule-icon info">ℹ</span><span>Each audio file must be processed independently — no cross-file context.</span></li>
           </ul>
         </div>
       </div>
 
       <div class="whitelist-placeholder">
-        <div class="whitelist-placeholder-title">⚠️ &nbsp;Under Discussion — Model &amp; Data Whitelist Policy</div>
-        <p>Whether to operate a formal whitelist of approved models and/or datasets is still being finalized by the organizing committee. This section will be updated once a decision is reached. Participants are encouraged to check back before the training data release on April 2, 2026, or contact the organizers directly.</p>
-        <div class="whitelist-cols">
-          <div class="whitelist-col-box">
-            <div class="whitelist-col-label">Approved Models</div>
-            <div class="whitelist-col-empty">TBD — whitelist policy under discussion</div>
-          </div>
-          <div class="whitelist-col-box">
-            <div class="whitelist-col-label">Approved External Datasets</div>
-            <div class="whitelist-col-empty">TBD — whitelist policy under discussion</div>
-          </div>
-        </div>
+        <div class="whitelist-placeholder-title">Model &amp; Data Whitelist Policy</div>
+        <p>Whether to operate a formal whitelist of approved models and/or external datasets is still being finalized. Proposals for additional open-source models or data are due <strong>May 4, 2026</strong>. Contact the organizers with questions.</p>
       </div>
 
       <div class="submission-box">
-        <div class="submission-box-title">📬 &nbsp;Questions &amp; Registration</div>
-        <p>For questions about eligibility, rule clarifications, or to register your team's intent to participate, contact the organizing committee at <a href="mailto:betrac@googlegroups.com" style="color:var(--accent);font-family:'DM Mono',monospace;font-size:.85rem;">betrac@googlegroups.com</a>. Full submission instructions will be published alongside the data release on April 2, 2026.</p>
+        <div class="submission-box-title">Questions &amp; Registration</div>
+        <p>For questions or to register your team, contact <a href="mailto:betrac@googlegroups.com" style="color:var(--accent);font-family:'DM Mono',monospace;font-size:.85rem;">betrac@googlegroups.com</a>.</p>
       </div>
 
     </div>
@@ -740,7 +719,7 @@
     <div class="container">
       <hr class="rule">
       <p class="section-label">Dataset</p>
-      <h2 class="section-title" style="display:flex;align-items:center;gap:1rem;">Synth-DoPaCo <a href="#" target="_blank" style="font-family:'DM Mono',monospace;font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);border:1px solid var(--accent-bdr);padding:0.3rem 0.85rem;border-radius:100px;text-decoration:none;vertical-align:middle;white-space:nowrap;">📄 Paper</a></h2>
+      <h2 class="section-title">Synth-DoPaCo</h2>
       <div class="data-layout">
         <div>
           <p class="section-body" style="max-width:100%">Fully synthetic doctor-patient conversations generated with open-weight, permissively licensed models. Speaker identities are strictly disjoint across splits. Audio features two speakers, 66 ambient sound classes, room reverberation, and Opus compression artifacts.</p>
@@ -748,20 +727,17 @@
         </div>
         <div>
           <div style="margin-top:0">
-            <p style="font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.7rem;">✍🏻 Evaluation Metrics</p>
+            <p style="font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.7rem;">Evaluation Metrics</p>
             <div class="eval-pair">
-              <div class="eval-card primary"><div class="elabel">Primary</div><div class="ename">Open Medical Concept F1</div><div class="edesc">MeSH keyword matching + NER via scispaCy</div><a href="https://github.com/Play-Your-Part/beyond-transcription-challenge-evaluation-harness" target="_blank" style="display:inline-flex;align-items:center;gap:.35rem;margin-top:.6rem;font-family:'DM Mono',monospace;font-size:.68rem;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-bdr);">⚙ btc-eval harness</a></div>
-              <div class="eval-card"><div class="elabel">Secondary</div><div class="ename">ROUGE F1</div><div class="edesc">R-2, R-3, R-L against reference notes</div><a href="https://github.com/Play-Your-Part/beyond-transcription-challenge-evaluation-harness" target="_blank" style="display:inline-flex;align-items:center;gap:.35rem;margin-top:.6rem;font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text-dim);text-decoration:none;border-bottom:1px solid var(--border-med);">⚙ btc-eval harness</a></div>
+              <div class="eval-card primary"><div class="elabel">Primary</div><div class="ename">Open Medical Concept F1</div><div class="edesc">MeSH keyword matching + NER via scispaCy</div><a href="https://github.com/betrac/betrac-metrics" target="_blank" style="display:inline-flex;align-items:center;gap:.35rem;margin-top:.6rem;font-family:'DM Mono',monospace;font-size:.68rem;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-bdr);">⚙ btc-eval harness</a></div>
+              <div class="eval-card"><div class="elabel">Secondary</div><div class="ename">ROUGE F1</div><div class="edesc">R-2, R-3, R-L against reference notes</div><a href="https://github.com/betrac/betrac-metrics" target="_blank" style="display:inline-flex;align-items:center;gap:.35rem;margin-top:.6rem;font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text-dim);text-decoration:none;border-bottom:1px solid var(--border-med);">⚙ btc-eval harness</a></div>
             </div>
           </div>
         </div>
       </div>
       <div class="postcomp-box">
-        <p style="font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;">Post-Competition Analysis (Top 5 per Track)</p>
-        <div class="postcomp-grid">
-          <div><p style="font-weight:600;color:var(--text);margin-bottom:.4rem;">LLM-as-a-Judge</p><p style="font-size:.85rem;color:var(--text-muted);line-height:1.7">Reference-free scoring across 4 dimensions (1–5): Faithfulness, Coverage, Structure, and Conciseness. Additional analyses include over-/under-medicalization, over-specificity, missed facts, critical omissions, duplicated content, unsupported claims, and contradictions.</p></div>
-          <div><p style="font-weight:600;color:var(--text);margin-bottom:.4rem;">Out-of-Domain Generalization</p><p style="font-size:.85rem;color:var(--text-muted);line-height:1.7">Evaluated on 20–30 real OSCE interviews (Fareez et al.) to test transfer from synthetic to real recorded audio.</p></div>
-        </div>
+        <p style="font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.6rem;">Post-Competition Analysis (Top 5 per Track)</p>
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.7">Top 5 systems per track will undergo additional LLM-as-a-judge evaluation (Faithfulness, Coverage, Structure, Conciseness) and out-of-domain evaluation on real recorded OSCE interviews.</p>
       </div>
     </div>
   </section>
@@ -772,17 +748,15 @@
       <hr class="rule">
       <p class="section-label">Leaderboard</p>
       <h2 class="section-title">Rankings</h2>
-      <p class="section-body">Ranked by <strong>Open Medical Concept F1</strong> (primary), with ROUGE-2/3/L as secondary.<br>Winners determined separately per track.</p>
-
       <div class="lb-tabs">
-        <button class="lb-tab active" onclick="switchTab('lw')">⚡ Lightweight Track <span style="font-size:.65rem;opacity:.7;margin-left:.3rem;">≤ 3B</span></button>
-        <button class="lb-tab" onclick="switchTab('hw')">🔬 Heavyweight Track <span style="font-size:.65rem;opacity:.7;margin-left:.3rem;">≤ 30B</span></button>
+        <button class="lb-tab active" onclick="switchTab('lw')">Lightweight Track <span style="font-size:.65rem;opacity:.7;margin-left:.3rem;">≤ 3B</span></button>
+        <button class="lb-tab" onclick="switchTab('hw')">Heavyweight Track <span style="font-size:.65rem;opacity:.7;margin-left:.3rem;">≤ 30B</span></button>
       </div>
 
       <div class="lb-panel active" id="panel-lw">
         <div class="lb-info-row">
           <span class="lb-info-text">Ranked by Open Medical Concept F1 · Lightweight Track (≤ 3B parameters)</span>
-          <span class="lb-status-badge badge-upcoming">⏳ Submissions open June 24</span>
+          <span class="lb-status-badge badge-upcoming">Submissions open June 24</span>
         </div>
         <table class="lb-table">
           <thead>
@@ -799,7 +773,6 @@
             <tr>
               <td colspan="6">
                 <div class="lb-empty">
-                  <div class="lb-empty-icon">🏁</div>
                   <div class="lb-empty-msg">No submissions yet</div>
                   <div class="lb-empty-sub">Results will appear here after the submission deadline (June 24, 2026).</div>
                 </div>
@@ -807,13 +780,13 @@
             </tr>
           </tbody>
         </table>
-        <p style="font-size:.71rem;color:var(--text-dim);margin-top:.6rem;font-family:'DM Mono',monospace;">* Baseline (Qwen2.5-Omni-3B) will be published alongside training data release on April 2, 2026.</p>
+        <p style="font-size:.71rem;color:var(--text-dim);margin-top:.6rem;font-family:'DM Mono',monospace;">* Baseline: <a href="https://github.com/betrac/betrac-2026-baseline" target="_blank" style="color:var(--accent);">Qwen2.5-Omni-3B</a> (results forthcoming)</p>
       </div>
 
       <div class="lb-panel" id="panel-hw">
         <div class="lb-info-row">
           <span class="lb-info-text">Ranked by Open Medical Concept F1 · Heavyweight Track (≤ 30B parameters)</span>
-          <span class="lb-status-badge badge-upcoming">⏳ Submissions open June 24</span>
+          <span class="lb-status-badge badge-upcoming">Submissions open June 24</span>
         </div>
         <table class="lb-table">
           <thead>
@@ -828,17 +801,16 @@
           </thead>
           <tbody>
             <tr>
-              <td colspan="6">
-                <div class="lb-empty">
-                  <div class="lb-empty-icon">🏁</div>
-                  <div class="lb-empty-msg">No submissions yet</div>
-                  <div class="lb-empty-sub">Results will appear here after the submission deadline (June 24, 2026).</div>
-                </div>
-              </td>
+              <td><span class="lb-rank">—</span></td>
+              <td><span class="lb-team">Baseline</span></td>
+              <td><a href="https://github.com/betrac/betrac-2026-baseline" target="_blank" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-bdr);">Qwen3-Omni-Instruct</a></td>
+              <td class="right"><span class="lb-score">18.9</span></td>
+              <td class="right">5.6</td>
+              <td class="right">14.3</td>
             </tr>
           </tbody>
         </table>
-        <p style="font-size:.71rem;color:var(--text-dim);margin-top:.6rem;font-family:'DM Mono',monospace;">* Baseline (best of Qwen2.5-Omni-3B / Qwen3-Omni-30B variants) will be published alongside training data release on April 2, 2026.</p>
+        <p style="font-size:.71rem;color:var(--text-dim);margin-top:.6rem;font-family:'DM Mono',monospace;">Baseline evaluated on dev set.</p>
       </div>
 
     </div>
@@ -849,7 +821,7 @@
     <div class="container">
       <hr class="rule">
       <p class="section-label">Schedule</p>
-      <h2 class="section-title">Key Milestones</h2>
+      <h2 class="section-title">Schedule</h2>
       <div class="tl-wrap" style="grid-template-columns:1fr;max-width:600px;">
         <div class="timeline">
           <div class="timeline-item"><div class="tldot active"></div><div class="tldate">April 2, 2026</div><div class="tllabel">Training + Dev Data Release</div><div class="tlsub">Audio + reference SOAP notes published on Hugging Face</div></div>
@@ -907,4 +879,14 @@
     </div>
   </footer>
 
-  <script da
+  <script>
+    function switchTab(track) {
+      document.querySelectorAll('.lb-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.lb-panel').forEach(p => p.classList.remove('active'));
+      const idx = track === 'lw' ? 0 : 1;
+      document.querySelectorAll('.lb-tab')[idx].classList.add('active');
+      document.getElementById('panel-' + track).classList.add('active');
+    }
+  </script>
+</body>
+</html>
