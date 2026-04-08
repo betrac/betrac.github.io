@@ -164,7 +164,6 @@
       border: 1px solid var(--border-med);
     }
     .btn-secondary:hover { border-color: var(--accent-bdr); background: var(--accent-bg); }
-    /* ── Zulip join button ── */
     .btn-zulip {
       background: var(--zulip); color: #fff;
       border: none;
@@ -502,6 +501,44 @@
     }
     .lb-info-text { font-size: .85rem; color: var(--text-muted); }
 
+    /* Reference topline box */
+    .lb-ref-section {
+      margin-top: 2.5rem;
+      padding: 1.6rem 1.8rem;
+      background: var(--amber-bg);
+      border: 1px solid var(--amber-bdr);
+      border-radius: 12px;
+    }
+    .lb-ref-header {
+      display: flex; align-items: center; gap: .8rem;
+      flex-wrap: wrap; margin-bottom: 1.2rem;
+    }
+    .lb-ref-label {
+      font-family: 'DM Mono', monospace; font-size: .68rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--amber);
+    }
+    .lb-ref-note {
+      font-size: .8rem; color: var(--text-dim);
+    }
+    .lb-table-ref {
+      width: 100%; border-collapse: collapse;
+      font-family: 'DM Mono', monospace; font-size: .82rem;
+      border: 1px solid var(--amber-bdr); border-radius: 8px; overflow: hidden;
+    }
+    .lb-table-ref th {
+      text-align: left; padding: .65rem 1rem;
+      background: rgba(180,83,9,0.08); color: var(--amber);
+      letter-spacing: .08em; text-transform: uppercase; font-size: .64rem;
+      border-bottom: 1px solid var(--amber-bdr);
+    }
+    .lb-table-ref th.right, .lb-table-ref td.right { text-align: right; }
+    .lb-table-ref td {
+      padding: .85rem 1rem; border-bottom: 1px solid var(--amber-bdr);
+      color: var(--text-muted); vertical-align: middle;
+    }
+    .lb-table-ref tr:last-child td { border-bottom: none; }
+
     footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:2.5rem; }
     .footer-inner { display:flex; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; flex-wrap:wrap; gap:1rem; }
     .footer-brand { font-family:'DM Serif Display',serif; font-size:1.2rem; color:var(--text-muted); }
@@ -595,10 +632,8 @@
     </div>
     <p class="hero-desc">Generate SOAP notes directly from doctor-patient conversation audio — no intermediate transcription allowed.</p>
 
-    <!-- ── CTA BUTTONS ── -->
     <div class="hero-actions">
       <a href="https://huggingface.co/datasets/betrac" target="_blank" class="btn btn-primary">🤗 Access Dataset on Hugging Face</a>
-      <!-- Zulip community join button -->
       <a href="https://betrac.zulipchat.com/join/4znrm2sqi7f2ng5hdcyi63lh/" target="_blank" class="btn btn-zulip">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0;">
           <circle cx="12" cy="12" r="10" fill="rgba(255,255,255,0.18)"/>
@@ -634,10 +669,9 @@
       <hr class="rule">
       <p class="section-label">Tracks</p>
       <h2 class="section-title">Competition Tracks</h2>
-      <p class="section-body">Both tracks require <strong>open-weight models only</strong> and share the same constraint: <span class="no-transcript-highlight">no intermediate transcription</span>.</p>
+      <p class="section-body" style="max-width:none;white-space:nowrap;">Both tracks require <strong>open-weight models only</strong> and share the same constraint: <span class="no-transcript-highlight">no intermediate transcription</span>.</p>
       <div class="tracks-grid">
         <div class="track-card track-lw">
-
           <div class="track-name">Lightweight Track</div>
           <div class="track-pill pill-green">≤ 3B Parameters</div>
           <ul class="track-features">
@@ -649,7 +683,6 @@
           </ul>
         </div>
         <div class="track-card track-hw">
-
           <div class="track-name">Heavyweight Track</div>
           <div class="track-pill pill-blue">≤ 30B Parameters</div>
           <ul class="track-features">
@@ -754,64 +787,153 @@
         <button class="lb-tab" onclick="switchTab('hw')">Heavyweight Track <span style="font-size:.65rem;opacity:.7;margin-left:.3rem;">≤ 30B</span></button>
       </div>
 
+      <!-- ── Lightweight Track ── -->
       <div class="lb-panel active" id="panel-lw">
         <div class="lb-info-row">
-          <span class="lb-info-text">Ranked by Open Medical Concept F1 · Lightweight Track (≤ 3B parameters)</span>
-          <span class="lb-status-badge badge-upcoming">Submissions open June 24</span>
+          <span class="lb-info-text">Ranked by Open Medical Concept F1 · Lightweight Track (≤ 3B parameters, e2e only)</span>
+          <span class="lb-status-badge badge-open">Baseline results</span>
         </div>
         <table class="lb-table">
           <thead>
             <tr>
               <th style="width:3rem;">#</th>
-              <th>Team</th>
-              <th>System / Model</th>
-              <th class="right">Med Concept F1 ↓</th>
+              <th>System</th>
+              <th>Pipeline</th>
+              <th class="right">Concept F1 ↓</th>
+              <th class="right">C-Prec</th>
+              <th class="right">C-Recall</th>
               <th class="right">ROUGE-2</th>
+              <th class="right">ROUGE-3</th>
               <th class="right">ROUGE-L</th>
+              <th class="right">Words</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td colspan="6">
-                <div class="lb-empty">
-                  <div class="lb-empty-msg">No submissions yet</div>
-                  <div class="lb-empty-sub">Results will appear here after the submission deadline (June 24, 2026).</div>
-                </div>
-              </td>
+              <td><span class="lb-rank gold">1</span></td>
+              <td><span class="lb-team">Qwen25-omni-3b</span></td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--text-dim);">end-to-end</span></td>
+              <td class="right"><span class="lb-score">0.5637</span></td>
+              <td class="right">0.5835</td>
+              <td class="right">0.5945</td>
+              <td class="right">0.0920</td>
+              <td class="right">0.0344</td>
+              <td class="right">—</td>
+              <td class="right">380</td>
             </tr>
           </tbody>
         </table>
-        <p style="font-size:.71rem;color:var(--text-dim);margin-top:.6rem;font-family:'DM Mono',monospace;">* Baseline: <a href="https://github.com/betrac/betrac-2026-baseline" target="_blank" style="color:var(--accent);">Qwen2.5-Omni-3B</a> (results forthcoming)</p>
+        <p style="font-size:.71rem;color:var(--text-dim);margin-top:.6rem;font-family:'DM Mono',monospace;">* Baseline evaluated on dev set. Participant submissions open June 24, 2026.</p>
       </div>
 
+      <!-- ── Heavyweight Track ── -->
       <div class="lb-panel" id="panel-hw">
         <div class="lb-info-row">
           <span class="lb-info-text">Ranked by Open Medical Concept F1 · Heavyweight Track (≤ 30B parameters)</span>
-          <span class="lb-status-badge badge-upcoming">Submissions open June 24</span>
+          <span class="lb-status-badge badge-open">Baseline results</span>
         </div>
         <table class="lb-table">
           <thead>
             <tr>
               <th style="width:3rem;">#</th>
-              <th>Team</th>
-              <th>System / Model</th>
-              <th class="right">Med Concept F1 ↓</th>
+              <th>System</th>
+              <th>Pipeline</th>
+              <th class="right">Concept F1 ↓</th>
+              <th class="right">C-Prec</th>
+              <th class="right">C-Recall</th>
               <th class="right">ROUGE-2</th>
+              <th class="right">ROUGE-3</th>
               <th class="right">ROUGE-L</th>
+              <th class="right">Words</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><span class="lb-rank">—</span></td>
-              <td><span class="lb-team">Baseline</span></td>
-              <td><a href="https://github.com/betrac/betrac-2026-baseline" target="_blank" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-bdr);">Qwen3-Omni-Instruct</a></td>
-              <td class="right"><span class="lb-score">18.9</span></td>
-              <td class="right">5.6</td>
-              <td class="right">14.3</td>
+              <td><span class="lb-rank gold">1</span></td>
+              <td><span class="lb-team">Qwen25-omni-7b</span></td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--text-dim);">end-to-end</span></td>
+              <td class="right"><span class="lb-score">0.5613</span></td>
+              <td class="right">0.5787</td>
+              <td class="right">0.5975</td>
+              <td class="right">0.0950</td>
+              <td class="right">0.0343</td>
+              <td class="right">—</td>
+              <td class="right">350</td>
+            </tr>
+            <tr>
+              <td><span class="lb-rank silver">2</span></td>
+              <td><span class="lb-team">Qwen3-omni-30b-thinking</span></td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--text-dim);">end-to-end</span></td>
+              <td class="right"><span class="lb-score">0.4923</span></td>
+              <td class="right">0.5085</td>
+              <td class="right">0.5483</td>
+              <td class="right">0.0472</td>
+              <td class="right">0.0123</td>
+              <td class="right">—</td>
+              <td class="right">316</td>
+            </tr>
+            <tr>
+              <td><span class="lb-rank bronze">3</span></td>
+              <td><span class="lb-team">Qwen3-omni-30b-instruct</span></td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--text-dim);">end-to-end</span></td>
+              <td class="right"><span class="lb-score">0.4820</span></td>
+              <td class="right">0.4997</td>
+              <td class="right">0.5458</td>
+              <td class="right">0.0558</td>
+              <td class="right">0.0175</td>
+              <td class="right">—</td>
+              <td class="right">351</td>
             </tr>
           </tbody>
         </table>
-        <p style="font-size:.71rem;color:var(--text-dim);margin-top:.6rem;font-family:'DM Mono',monospace;">Baseline evaluated on dev set.</p>
+        <p style="font-size:.71rem;color:var(--text-dim);margin-top:.6rem;font-family:'DM Mono',monospace;">* Baseline evaluated on dev set. Participant submissions open June 24, 2026.</p>
+      </div>
+
+      <!-- ── Reference Topline (cascade, not ranked) ── -->
+      <div class="lb-ref-section">
+        <div class="lb-ref-header">
+          <span class="lb-ref-label">⚠ Reference Topline — Cascade Systems (not ranked)</span>
+          <span class="lb-ref-note">Cascade systems are ineligible for competition ranking and serve as an upper-bound reference only.</span>
+        </div>
+        <table class="lb-table-ref">
+          <thead>
+            <tr>
+              <th>System</th>
+              <th>Pipeline</th>
+              <th class="right">Concept F1</th>
+              <th class="right">C-Prec</th>
+              <th class="right">C-Recall</th>
+              <th class="right">ROUGE-2</th>
+              <th class="right">ROUGE-3</th>
+              <th class="right">ROUGE-L</th>
+              <th class="right">Words</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="lb-team" style="color:var(--amber);">Whisper-asr</span></td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--amber);">cascade</span></td>
+              <td class="right" style="font-weight:700;color:var(--amber);">0.6827</td>
+              <td class="right">0.6356</td>
+              <td class="right">0.7901</td>
+              <td class="right">0.1174</td>
+              <td class="right">0.0425</td>
+              <td class="right">—</td>
+              <td class="right">261</td>
+            </tr>
+            <tr>
+              <td><span class="lb-team" style="color:var(--amber);">Qwen3-asr</span></td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--amber);">cascade</span></td>
+              <td class="right" style="font-weight:700;color:var(--amber);">0.6736</td>
+              <td class="right">0.6284</td>
+              <td class="right">0.7775</td>
+              <td class="right">0.1092</td>
+              <td class="right">0.0374</td>
+              <td class="right">—</td>
+              <td class="right">256</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
     </div>
