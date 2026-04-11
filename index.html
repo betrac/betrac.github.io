@@ -37,6 +37,11 @@
       --track-hw:   linear-gradient(135deg, rgba(37,99,235,0.08), rgba(99,102,241,0.02));
       --zulip:      #0d9488;
       --zulip-dark: #0f766e;
+      /* NEW: Google Form registration color — warm violet */
+      --form:       #7c3aed;
+      --form-dark:  #6d28d9;
+      --form-bg:    rgba(124,58,237,0.07);
+      --form-bdr:   rgba(124,58,237,0.22);
     }
     *, *::before, *::after {
       box-sizing: border-box; margin: 0; padding: 0;
@@ -171,6 +176,19 @@
     }
     .btn-zulip:hover { background: var(--zulip-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(13,148,136,0.32); }
     .btn-zulip svg { flex-shrink: 0; }
+
+    /* ── NEW: Register button (violet) ── */
+    .btn-register {
+      background: var(--form); color: #fff;
+      border: none;
+      box-shadow: 0 0 24px rgba(124,58,237,0.22);
+    }
+    .btn-register:hover {
+      background: var(--form-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(124,58,237,0.32);
+    }
+
     .stats-row {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
       gap: 1px; background: var(--border);
@@ -440,6 +458,39 @@
     }
     .submission-box p { font-size: .875rem; color: var(--text-muted); line-height: 1.7; }
 
+    /* ── NEW: Registration box in Rules section (violet) ── */
+    .register-box {
+      margin-top: 2rem; padding: 1.8rem 2rem;
+      background: var(--form-bg); border: 1px solid var(--form-bdr);
+      border-radius: 12px; box-shadow: var(--shadow);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .register-box-content {}
+    .register-box-title {
+      font-family: 'DM Mono', monospace; font-size: .68rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--form); margin-bottom: .5rem;
+    }
+    .register-box-desc {
+      font-size: .9rem; color: var(--text-muted); line-height: 1.6;
+    }
+    .register-box-desc strong { color: var(--text); }
+    .btn-register-lg {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: var(--form); color: #fff; white-space: nowrap;
+      font-weight: 600; font-size: .9rem;
+      padding: .85rem 1.8rem; border-radius: 7px;
+      text-decoration: none; flex-shrink: 0;
+      box-shadow: 0 0 24px rgba(124,58,237,0.25);
+      transition: background .2s, transform .2s, box-shadow .2s;
+    }
+    .btn-register-lg:hover {
+      background: var(--form-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(124,58,237,0.35);
+    }
+
     .lb-tabs {
       display: flex; gap: .5rem; margin-top: 2.5rem; margin-bottom: 2rem;
     }
@@ -634,6 +685,13 @@
 
     <div class="hero-actions">
       <a href="https://huggingface.co/datasets/betrac" target="_blank" class="btn btn-primary">🤗 Access Dataset on Hugging Face</a>
+      <!-- ── NEW: Register button ── -->
+      <a href="https://forms.gle/YOUR_FORM_ID" target="_blank" class="btn btn-register">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M9 12h6M9 16h6M9 8h3M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" stroke="#fff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Register Your Team
+      </a>
       <a href="https://betrac.zulipchat.com/join/4znrm2sqi7f2ng5hdcyi63lh/" target="_blank" class="btn btn-zulip">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0;">
           <circle cx="12" cy="12" r="10" fill="rgba(255,255,255,0.18)"/>
@@ -738,6 +796,23 @@
       <div class="whitelist-placeholder">
         <div class="whitelist-placeholder-title">Model &amp; Data Whitelist Policy</div>
         <p>Whether to operate a formal whitelist of approved models and/or external datasets is still being finalized. Proposals for additional open-source models or data are due <strong>May 4, 2026</strong>. Contact the organizers with questions.</p>
+      </div>
+
+      <!-- ── NEW: Team Registration box in Rules ── -->
+      <div class="register-box">
+        <div class="register-box-content">
+          <div class="register-box-title">📋 Team Registration</div>
+          <div class="register-box-desc">
+            Ready to participate? Fill in the registration form to officially enroll your team.<br>
+            <strong>Registration is required</strong> before submitting results. The form takes about 2 minutes to complete.
+          </div>
+        </div>
+        <a href="https://forms.gle/YOUR_FORM_ID" target="_blank" class="btn-register-lg">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M9 12h6M9 16h6M9 8h3M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" stroke="#fff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Register Your Team →
+        </a>
       </div>
 
       <div class="submission-box">
