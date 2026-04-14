@@ -755,7 +755,7 @@
           <ul class="rule-list">
             <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>No intermediate transcription</strong> at any pipeline stage — including chain-of-thought steps or tool outputs.</span></li>
             <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>Open-weight models only.</strong> Proprietary API-based models (GPT-4o, Gemini, etc.) are not permitted.</span></li>
-            <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>Parameter cap enforced per track.</strong> Lightweight: ≤ 3B. Heavyweight: ≤ 30B. For MoE models, total (not active) parameter count applies.</span></li>
+            <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>Parameter cap enforced per track.</strong> Lightweight: ≤ 3B. Heavyweight: ≤ 30B. Total parameters count — not active (MoE) or effective (PLE/MatFormer). See <a href="https://github.com/betrac/betrac.github.io/blob/main/rules.md#9-model-eligibility" style="color:var(--accent)">full counting rules</a>.</span></li>
             <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>No tool use in Lightweight Track.</strong> Agentic architectures are Heavyweight-only.</span></li>
             <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>No use of withheld test labels</strong> at any stage.</span></li>
           </ul>
@@ -780,8 +780,8 @@
       </div>
 
       <div class="whitelist-placeholder">
-        <div class="whitelist-placeholder-title">Model &amp; Data Whitelist Policy</div>
-        <p>Whether to operate a formal whitelist of approved models and/or external datasets is still being finalized. Proposals for additional open-source models or data are due <strong>May 4, 2026</strong>. Contact the organizers with questions.</p>
+        <div class="whitelist-placeholder-title">Approved Models &amp; Datasets</div>
+        <p>The <a href="https://github.com/betrac/betrac.github.io/blob/main/rules.md" target="_blank" style="color:var(--accent);font-weight:500">full rules document</a> includes approved model and dataset lists, detailed parameter counting rules (MoE, PLE/MatFormer, omni-model stripping), and submission requirements. Additional models or datasets may be proposed for inclusion by <strong>May 4, 2026</strong> — contact <a href="mailto:betrac@googlegroups.com" style="color:var(--accent)">betrac@googlegroups.com</a>.</p>
       </div>
 
       <div class="register-box">
