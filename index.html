@@ -37,7 +37,6 @@
       --track-hw:   linear-gradient(135deg, rgba(37,99,235,0.08), rgba(99,102,241,0.02));
       --zulip:      #0d9488;
       --zulip-dark: #0f766e;
-      /* NEW: Google Form registration color — warm violet */
       --form:       #7c3aed;
       --form-dark:  #6d28d9;
       --form-bg:    rgba(124,58,237,0.07);
@@ -177,8 +176,6 @@
     }
     .btn-zulip:hover { background: var(--zulip-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(13,148,136,0.32); }
     .btn-zulip svg { flex-shrink: 0; }
-
-    /* ── NEW: Register button (violet) ── */
     .btn-register {
       background: var(--form); color: #fff;
       border: none;
@@ -189,7 +186,6 @@
       transform: translateY(-1px);
       box-shadow: 0 6px 20px rgba(124,58,237,0.32);
     }
-
     .stats-row {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
       gap: 1px; background: var(--border);
@@ -266,7 +262,6 @@
       border-radius: 8px; font-size: .875rem; color: var(--text-muted);
     }
     .baseline-note strong { color: var(--amber); }
-
     .no-transcript-highlight {
       display: inline;
       color: var(--red);
@@ -284,7 +279,6 @@
       opacity: 0.35;
       border-radius: 1px;
     }
-
     .data-layout {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 3rem; align-items: start; margin-top: 3rem;
@@ -390,7 +384,6 @@
     .org-email { font-family:'DM Mono',monospace; font-size:.68rem; color:var(--text-dim); display:block; margin-bottom:.8rem; text-decoration:none; }
     .org-email:hover { color:var(--accent); }
     .org-bio { font-size:.82rem; color:var(--text-muted); line-height:1.65; }
-
     .rules-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 2rem; margin-top: 3rem;
@@ -458,8 +451,6 @@
       color: var(--accent); margin-bottom: .8rem;
     }
     .submission-box p { font-size: .875rem; color: var(--text-muted); line-height: 1.7; }
-
-    /* ── NEW: Registration box in Rules section (violet) ── */
     .register-box {
       margin-top: 2rem; padding: 1.8rem 2rem;
       background: var(--form-bg); border: 1px solid var(--form-bdr);
@@ -491,7 +482,6 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(124,58,237,0.35);
     }
-
     .lb-tabs {
       display: flex; gap: .5rem; margin-top: 2.5rem; margin-bottom: 2rem;
     }
@@ -552,8 +542,6 @@
       flex-wrap: wrap; gap: 1rem; margin-bottom: 1.2rem;
     }
     .lb-info-text { font-size: .85rem; color: var(--text-muted); }
-
-    /* Reference topline box */
     .lb-ref-section {
       margin-top: 2.5rem;
       padding: 1.6rem 1.8rem;
@@ -590,7 +578,6 @@
       color: var(--text-muted); vertical-align: middle;
     }
     .lb-table-ref tr:last-child td { border-bottom: none; }
-
     footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:2.5rem; }
     .footer-inner { display:flex; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; flex-wrap:wrap; gap:1rem; }
     .footer-brand { font-family:'DM Serif Display',serif; font-size:1.2rem; color:var(--text-muted); }
@@ -686,8 +673,7 @@
 
     <div class="hero-actions">
       <a href="https://huggingface.co/datasets/betrac" target="_blank" class="btn btn-primary">🤗 Access Dataset on Hugging Face</a>
-      <!-- ── NEW: Register button ── -->
-      <a href="https://forms.gle/YOUR_FORM_ID" target="_blank" class="btn btn-register">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZfe5oJzIq0Ot9I2qTLABjYEbgCzXSTbyKhvhfqV3AfbHS4A/viewform?usp=publish-editor" target="_blank" class="btn btn-register">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M9 12h6M9 16h6M9 8h3M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" stroke="#fff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -798,7 +784,6 @@
         <p>Whether to operate a formal whitelist of approved models and/or external datasets is still being finalized. Proposals for additional open-source models or data are due <strong>May 4, 2026</strong>. Contact the organizers with questions.</p>
       </div>
 
-      <!-- ── NEW: Team Registration box in Rules ── -->
       <div class="register-box">
         <div class="register-box-content">
           <div class="register-box-title">📋 Team Registration</div>
@@ -807,7 +792,7 @@
             <strong>Registration is required</strong> before submitting results. The form takes about 2 minutes to complete.
           </div>
         </div>
-        <a href="https://forms.gle/YOUR_FORM_ID" target="_blank" class="btn-register-lg">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZfe5oJzIq0Ot9I2qTLABjYEbgCzXSTbyKhvhfqV3AfbHS4A/viewform?usp=publish-editor" target="_blank" class="btn-register-lg">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M9 12h6M9 16h6M9 8h3M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" stroke="#fff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -888,12 +873,12 @@
               <td><span class="lb-rank gold">1</span></td>
               <td><span class="lb-team">Qwen2.5-Omni-3B</span> <a href="https://github.com/betrac/betrac-2026-baseline" target="_blank" style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);text-decoration:none;">↗&nbsp;code</a></td>
               <td><span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--text-dim);">end-to-end</span></td>
-              <td class="right"><span class="lb-score">0.5637</span></td>
-              <td class="right">0.5835</td>
-              <td class="right">0.5945</td>
+              <td class="right"><span class="lb-score">0.2604</span></td>
+              <td class="right">0.2891</td>
+              <td class="right">0.2450</td>
               <td class="right">0.0920</td>
               <td class="right">0.0344</td>
-              <td class="right">—</td>
+              <td class="right">0.1797</td>
               <td class="right">380</td>
             </tr>
           </tbody>
@@ -927,37 +912,37 @@
               <td><span class="lb-rank gold">1</span></td>
               <td><span class="lb-team">Qwen2.5-Omni-7B</span> <a href="https://github.com/betrac/betrac-2026-baseline" target="_blank" style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);text-decoration:none;">↗&nbsp;code</a></td>
               <td><span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--text-dim);">end-to-end</span></td>
-              <td class="right"><span class="lb-score">0.5613</span></td>
-              <td class="right">0.5787</td>
-              <td class="right">0.5975</td>
+              <td class="right"><span class="lb-score">0.2572</span></td>
+              <td class="right">0.3070</td>
+              <td class="right">0.2302</td>
               <td class="right">0.0950</td>
               <td class="right">0.0343</td>
-              <td class="right">—</td>
+              <td class="right">0.1837</td>
               <td class="right">350</td>
             </tr>
             <tr>
               <td><span class="lb-rank silver">2</span></td>
-              <td><span class="lb-team">Qwen3-Omni-30B-A3B-Thinking</span> <a href="https://github.com/betrac/betrac-2026-baseline" target="_blank" style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);text-decoration:none;">↗&nbsp;code</a></td>
+              <td><span class="lb-team">Qwen3-Omni-30B-A3B-Instruct</span> <a href="https://github.com/betrac/betrac-2026-baseline" target="_blank" style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);text-decoration:none;">↗&nbsp;code</a></td>
               <td><span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--text-dim);">end-to-end</span></td>
-              <td class="right"><span class="lb-score">0.4923</span></td>
-              <td class="right">0.5085</td>
-              <td class="right">0.5483</td>
-              <td class="right">0.0472</td>
-              <td class="right">0.0123</td>
-              <td class="right">—</td>
-              <td class="right">316</td>
+              <td class="right"><span class="lb-score">0.1879</span></td>
+              <td class="right">0.1879</td>
+              <td class="right">0.1964</td>
+              <td class="right">0.0558</td>
+              <td class="right">0.0175</td>
+              <td class="right">0.1433</td>
+              <td class="right">351</td>
             </tr>
             <tr>
               <td><span class="lb-rank bronze">3</span></td>
-              <td><span class="lb-team">Qwen3-Omni-30B-A3B-Instruct</span> <a href="https://github.com/betrac/betrac-2026-baseline" target="_blank" style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);text-decoration:none;">↗&nbsp;code</a></td>
+              <td><span class="lb-team">Qwen3-Omni-30B-A3B-Thinking</span> <a href="https://github.com/betrac/betrac-2026-baseline" target="_blank" style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);text-decoration:none;">↗&nbsp;code</a></td>
               <td><span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--text-dim);">end-to-end</span></td>
-              <td class="right"><span class="lb-score">0.4820</span></td>
-              <td class="right">0.4997</td>
-              <td class="right">0.5458</td>
-              <td class="right">0.0558</td>
-              <td class="right">0.0175</td>
-              <td class="right">—</td>
-              <td class="right">351</td>
+              <td class="right"><span class="lb-score">0.1645</span></td>
+              <td class="right">0.1694</td>
+              <td class="right">0.1675</td>
+              <td class="right">0.0472</td>
+              <td class="right">0.0123</td>
+              <td class="right">0.1314</td>
+              <td class="right">316</td>
             </tr>
           </tbody>
         </table>
@@ -988,23 +973,23 @@
             <tr>
               <td><span class="lb-team" style="color:var(--amber);">Whisper-large-v3 ASR + Qwen3-30B-A3B</span> <a href="https://github.com/betrac/betrac-2026-cascade" target="_blank" style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--amber);text-decoration:none;">↗&nbsp;code</a></td>
               <td><span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--amber);">cascade</span></td>
-              <td class="right" style="font-weight:700;color:var(--amber);">0.6827</td>
-              <td class="right">0.6356</td>
-              <td class="right">0.7901</td>
+              <td class="right" style="font-weight:700;color:var(--amber);">0.2860</td>
+              <td class="right">0.2964</td>
+              <td class="right">0.2838</td>
               <td class="right">0.1174</td>
               <td class="right">0.0425</td>
-              <td class="right">—</td>
+              <td class="right">0.2243</td>
               <td class="right">261</td>
             </tr>
             <tr>
               <td><span class="lb-team" style="color:var(--amber);">Qwen3-ASR-1.7B + Qwen3-30B-A3B</span> <a href="https://github.com/betrac/betrac-2026-cascade" target="_blank" style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--amber);text-decoration:none;">↗&nbsp;code</a></td>
               <td><span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--amber);">cascade</span></td>
-              <td class="right" style="font-weight:700;color:var(--amber);">0.6736</td>
-              <td class="right">0.6284</td>
-              <td class="right">0.7775</td>
+              <td class="right" style="font-weight:700;color:var(--amber);">0.2772</td>
+              <td class="right">0.2881</td>
+              <td class="right">0.2741</td>
               <td class="right">0.1092</td>
               <td class="right">0.0374</td>
-              <td class="right">—</td>
+              <td class="right">0.2169</td>
               <td class="right">256</td>
             </tr>
           </tbody>
