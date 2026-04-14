@@ -50,8 +50,7 @@ Each submission must include **all three** of the following:
 **Heavyweight submissions** must additionally include a **model inventory table** listing every model used in the system, its parameter count, its role (e.g., "main audio-LLM," "diarization," "speaker embedding"), and a sum confirming compliance with the track budget.
 
 - System description paper due **July 8, 2026** (required for ranking).
-- Maximum of **4 submissions per team**, with at most **1 submission per week**.
-- Submissions open approximately 4 weeks before the June 24 deadline (exact date TBA).
+- **One submission per team per track.** By **June 24, 2026**, teams must submit a system description to the organizers. Teams that have submitted a description will receive the test audio shortly after the deadline. Teams will then have approximately **one week** to generate and upload their SOAP notes. Exact submission mechanics will be announced closer to the evaluation period.
 - Non-compliant systems may be submitted but will be excluded from rankings.
 
 ## 5. Tools (Heavyweight Track)
