@@ -682,7 +682,7 @@
         <rect class="wvb wv-bar" x="312" y="16" width="4" height="16" rx="2" style="animation-delay:.07s"/>
       </svg>
     </div>
-    <p class="hero-desc">Generate SOAP notes directly from doctor-patient conversation audio — no intermediate transcription allowed.</p>
+    <p class="hero-desc">End-to-end audio models hallucinate nearly every clinical claim they generate. Can we fix that?</p>
 
     <div class="hero-actions">
       <a href="https://huggingface.co/datasets/betrac" target="_blank" class="btn btn-primary">🤗 Access Dataset on Hugging Face</a>
@@ -718,7 +718,7 @@
       <hr class="rule">
       <p class="section-label">About</p>
       <h2 class="section-title">The Challenge</h2>
-      <p class="section-body" style="max-width:none;">On the Synth-DoPaCo dataset, end-to-end models produce unsupported claim rates of <strong style="color:var(--red)">99–100%</strong>, compared to <strong style="color:var(--green)">21–23%</strong> for cascaded ASR-then-summarize pipelines. BeTraC targets this gap.</p>
+      <p class="section-body" style="max-width:none;">Generating clinical notes directly from audio — skipping transcription — is faster, cheaper, and avoids cascading ASR errors. But today's end-to-end models hallucinate at alarming rates: on the Synth-DoPaCo dataset, <strong style="color:var(--red)">99–100%</strong> of their clinical claims are unsupported by the source audio, compared to just <strong style="color:var(--green)">21–23%</strong> for traditional transcribe-then-summarize pipelines. BeTraC is a shared evaluation challenge to close this gap — building end-to-end speech models that are actually faithful enough to trust in healthcare.</p>
     </div>
   </section>
 
