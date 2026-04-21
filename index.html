@@ -753,9 +753,9 @@
         <div class="rules-block">
           <div class="rules-block-title">Hard Constraints <span style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--red);letter-spacing:.1em;text-transform:uppercase;background:rgba(220,38,38,.07);border:1px solid rgba(220,38,38,.18);padding:.18rem .6rem;border-radius:100px;">Ineligible if violated</span></div>
           <ul class="rule-list">
-            <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>No intermediate transcription</strong> at any pipeline stage — including chain-of-thought steps or tool outputs.</span></li>
+            <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>No intermediate transcription</strong> passed between separate models or pipeline components — including as tool outputs. Chain-of-thought inside the final model is unconstrained.</span></li>
             <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>Open-weight models only.</strong> Proprietary API-based models (GPT-4o, Gemini, etc.) are not permitted.</span></li>
-            <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>Parameter cap enforced per track.</strong> Lightweight: ≤ 3B. Heavyweight: ≤ 30B. Total parameters count — not active (MoE) or effective (PLE/MatFormer). See <a href="https://github.com/betrac/betrac.github.io/blob/main/rules.md#9-model-eligibility" style="color:var(--accent)">full counting rules</a>.</span></li>
+            <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>Parameter cap enforced per track.</strong> Lightweight: ≤ 6B. Heavyweight: ≤ 36B. Total parameters count — not active (MoE) or effective (PLE/MatFormer). See <a href="https://github.com/betrac/betrac.github.io/blob/main/rules.md#8-model-eligibility" style="color:var(--accent)">full counting rules</a>.</span></li>
             <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>No tool use in Lightweight Track.</strong> Agentic architectures are Heavyweight-only.</span></li>
             <li class="rule-item"><span class="rule-icon no">✗</span><span><strong>No use of withheld test labels</strong> at any stage.</span></li>
           </ul>
@@ -843,14 +843,14 @@
       <p class="section-label">Leaderboard</p>
       <h2 class="section-title">Rankings</h2>
       <div class="lb-tabs">
-        <button class="lb-tab active" onclick="switchTab('lw')">Lightweight Track <span style="font-size:.65rem;opacity:.7;margin-left:.3rem;">≤ 3B</span></button>
-        <button class="lb-tab" onclick="switchTab('hw')">Heavyweight Track <span style="font-size:.65rem;opacity:.7;margin-left:.3rem;">≤ 30B</span></button>
+        <button class="lb-tab active" onclick="switchTab('lw')">Lightweight Track <span style="font-size:.65rem;opacity:.7;margin-left:.3rem;">≤ 6B</span></button>
+        <button class="lb-tab" onclick="switchTab('hw')">Heavyweight Track <span style="font-size:.65rem;opacity:.7;margin-left:.3rem;">≤ 36B</span></button>
       </div>
 
       <!-- ── Lightweight Track ── -->
       <div class="lb-panel active" id="panel-lw">
         <div class="lb-info-row">
-          <span class="lb-info-text">Ranked by Open Medical Concept F1 · Lightweight Track (≤ 3B parameters, e2e only)</span>
+          <span class="lb-info-text">Ranked by Open Medical Concept F1 · Lightweight Track (≤ 6B parameters, e2e only)</span>
           <span class="lb-status-badge badge-open">Baseline results</span>
         </div>
         <table class="lb-table">
@@ -883,13 +883,13 @@
             </tr>
           </tbody>
         </table>
-        <p style="font-size:.71rem;color:var(--text-dim);margin-top:.6rem;font-family:'DM Mono',monospace;">* Baseline evaluated on dev set. System description deadline: June 24, 2026.</p>
+        <p style="font-size:.71rem;color:var(--text-dim);margin-top:.6rem;font-family:'DM Mono',monospace;">* Baseline evaluated on dev set. </p>
       </div>
 
       <!-- ── Heavyweight Track ── -->
       <div class="lb-panel" id="panel-hw">
         <div class="lb-info-row">
-          <span class="lb-info-text">Ranked by Open Medical Concept F1 · Heavyweight Track (≤ 30B parameters)</span>
+          <span class="lb-info-text">Ranked by Open Medical Concept F1 · Heavyweight Track (≤ 36B parameters)</span>
           <span class="lb-status-badge badge-open">Baseline results</span>
         </div>
         <table class="lb-table">
