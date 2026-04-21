@@ -699,6 +699,22 @@
       font-family: 'DM Mono', monospace;
       border-top: 1px solid rgba(245,158,11,0.2); padding-top: .75rem;
     }
+    .audio-example-note-text {
+      display: inline-block;
+      background: linear-gradient(90deg, #b45309 0%, #f59e0b 40%, #fbbf24 55%, #b45309 100%);
+      background-size: 250% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: .88rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      animation: shimmer 2.8s linear infinite;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% center; }
+      100% { background-position: -50% center; }
+    }
     /* ─────────────────────── */
 
     @media(max-width:700px) {
@@ -858,7 +874,7 @@
           <input type="range" class="audio-vol-slider" id="volSlider" min="0" max="1" step="0.02" value="1" oninput="setVolume(this.value)" aria-label="Volume">
         </div>
       </div>
-      <p class="audio-example-note" style="color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:400;">Listen to a sample conversation from the dataset</p>
+      <p class="audio-example-note" style="color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:400;"><span class="audio-example-note-text">↗ Listen to a sample conversation from the dataset</span></p>
     </div>
     <!-- ─────────────────── -->
 
