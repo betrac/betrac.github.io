@@ -4,7 +4,7 @@
 
 > ⚠️ **Unsure about anything?** If you are unsure whether a model, dataset, architecture, or technique is permitted, contact the organizers at **[betrac@googlegroups.com](mailto:betrac@googlegroups.com)** before the submission deadline. Rulings will be shared publicly on the challenge website.
 
-To encourage exploration of end-to-end optimizable architectures, no textual representation of the audio's spoken content — whether transcript, paraphrase, summary, or generated clinical note — may be passed between separate models or pipeline components during inference (multi-task, distillation etc. during training is allowed). Only the final model in the pipeline may produce text derived from the audio. What this latter model produces internally (including chain-of-thought reasoning) is unconstrained.
+To encourage exploration of end-to-end optimizable architectures, no textual representation of the audio's spoken content — whether transcript, paraphrase, summary, or generated clinical note — may be passed between separate models or pipeline components during inference (multi-task, distillation etc. during training is allowed, with the chain-of-thought exception below). Only the final model in the pipeline may produce text derived from the audio. The final model's chain-of-thought is unconstrained in form, but the model must not have been trained to produce a transcript of the input audio as a CoT target or intermediate supervision signal (see §2).
 
 ## 1. Tracks
 
@@ -21,7 +21,7 @@ To encourage exploration of end-to-end optimizable architectures, no textual rep
 ## 2. Allowed
 
 - **ASR-pretrained encoders** as feature extractors (Whisper encoder, HuBERT, WavLM, etc.).
-- **Chain-of-thought** inside the final model: unconstrained.
+- **Chain-of-thought** inside the final model: unconstrained in form. Short verbatim quotes from the audio that arise from task-relevant reasoning are permitted, and emergent transcript-like content in CoT is not a violation. **However**, the model must not have been trained with a transcript of the input audio as a CoT target, prefix, or intermediate supervision signal. This includes rich or structured representations that encode the spoken word sequence (e.g., word-level timestamps with speaker, prosody, or affect tags used as a reasoning step), and distillation from a teacher whose CoT is transcript-aligned. The distinction is in how the system was trained, not in what the CoT tokens look like at inference. See §9 for verification.
 - **Data augmentation** of any kind, using allowed data only.
 - **Acoustic preprocessing tools (Heavyweight only as separate models):** diarization, VAD, speaker embeddings, segmentation. Anything outputting timestamps, speaker IDs, or labels (no linguistic content). When run as separate inference steps, these are heavyweight only and their parameters count toward the budget. In the lightweight track, such components are permitted only if integrated as submodules within the single model architecture (see §1).
 - **Knowledge retrieval (Heavyweight):** e.g. retrieval augmented generation (RAG) over medical ontologies, drug DBs, guidelines, PubMed etc. is allowed as it returns external knowledge.
@@ -101,6 +101,8 @@ The budget counts all learned parameters that participate in at least one forwar
 ## 9. Compliance Review
 
 The organizers will review all submission traces (raw model outputs and tool logs) for compliance with the no-transcription rule and parameter limits. System description papers must include sufficient detail to reproduce the inference pipeline. The organizers reserve the right to request inference code from any team.
+
+**CoT training attestation.** System descriptions must attest that no transcript of the input audio (verbatim, paraphrased, or in rich/structured form encoding the spoken word sequence) was used as a CoT target, prefix, or intermediate supervision signal during training, and that the system was not distilled from a teacher whose CoT is transcript-aligned. Where submission traces show sustained transcript-like patterns in CoT, organizers may request training code, training data manifests, or loss configurations to verify compliance.
 
 Submissions found to be non-compliant will be excluded from rankings. If non-compliance is discovered after results are announced, rankings will be revised.
 
