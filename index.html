@@ -188,7 +188,6 @@
       transform: translateY(-1px);
       box-shadow: 0 6px 20px rgba(124,58,237,0.32);
     }
-    /* ── NEW: GitHub Baseline Button ── */
     .btn-github {
       background: var(--github); color: #fff;
       border: none;
@@ -200,7 +199,6 @@
       box-shadow: 0 6px 20px rgba(36,41,47,0.28);
     }
     .btn-github svg { flex-shrink: 0; }
-    /* ────────────────────────────── */
     .stats-row {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
       gap: 1px; background: var(--border);
@@ -715,7 +713,51 @@
       0%   { background-position: 200% center; }
       100% { background-position: -50% center; }
     }
-    /* ─────────────────────── */
+
+    /* ── Date Extension Styles ── */
+    .date-extended {
+      display: inline-flex; align-items: center; gap: .45rem;
+      flex-wrap: wrap;
+    }
+    .date-old {
+      text-decoration: line-through;
+      color: var(--text-dim);
+      opacity: 0.7;
+    }
+    .date-new {
+      color: var(--green);
+      font-weight: 600;
+    }
+    .date-badge-ext {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-family: 'DM Mono', monospace; font-size: .6rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      background: var(--green-bg); color: var(--green);
+      border: 1px solid var(--green-bdr);
+      padding: .1rem .5rem; border-radius: 100px;
+      vertical-align: middle; white-space: nowrap;
+    }
+    /* inline text variant (rules/whitelist) */
+    .inline-date-old {
+      text-decoration: line-through;
+      color: var(--text-dim);
+      opacity: 0.7;
+      font-size: .95em;
+    }
+    .inline-date-new {
+      color: var(--green);
+      font-weight: 600;
+    }
+    .inline-ext-badge {
+      display: inline-flex; align-items: center;
+      font-family: 'DM Mono', monospace; font-size: .6rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      background: var(--green-bg); color: var(--green);
+      border: 1px solid var(--green-bdr);
+      padding: .1rem .45rem; border-radius: 100px;
+      margin-left: .2rem; vertical-align: middle;
+    }
+    /* ─────────────────────────── */
 
     @media(max-width:700px) {
       nav { padding:1rem 1.5rem; }
@@ -801,16 +843,12 @@
 
     <div class="hero-actions">
       <a href="https://huggingface.co/datasets/betrac" target="_blank" class="btn btn-primary">🤗 Access Dataset on Hugging Face</a>
-
-      <!-- ── NEW: GitHub Baseline Button ── -->
       <a href="https://github.com/betrac/betrac-2026-baseline" target="_blank" class="btn btn-github">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
         </svg>
         Baseline Code on GitHub
       </a>
-      <!-- ────────────────────────────── -->
-
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZfe5oJzIq0Ot9I2qTLABjYEbgCzXSTbyKhvhfqV3AfbHS4A/viewform?usp=publish-editor" target="_blank" class="btn btn-register">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M9 12h6M9 16h6M9 8h3M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" stroke="#fff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
@@ -852,7 +890,6 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
             ambient noise
           </span>
-
         </div>
       </div>
       <audio id="demo-audio" src="79_139.mp3" preload="metadata"></audio>
@@ -950,7 +987,7 @@
             <li class="rule-item"><span class="rule-icon ok">✓</span><span><strong>Dev set</strong> may be used freely for model selection and tuning.</span></li>
             <li class="rule-item"><span class="rule-icon ok">✓</span><span><strong>System description paper required</strong> for all ranked submissions (due July 8, 2026).</span></li>
             <li class="rule-item"><span class="rule-icon info">ℹ</span><span><strong>One submission per team per track.</strong> Teams receive test audio after submitting a system description by the deadline.</span></li>
-            <li class="rule-item"><span class="rule-icon info">ℹ</span><span><strong>External data</strong> is subject to the whitelist policy below. Proposals due May 4.</span></li>
+            <li class="rule-item"><span class="rule-icon info">ℹ</span><span><strong>External data</strong> is subject to the whitelist policy below. Proposals due <span class="inline-date-old">May 4</span> <span class="inline-date-new">May 11</span><span class="inline-ext-badge">+1 wk</span>.</span></li>
           </ul>
           <hr class="rule-divider">
           <div class="rules-block-title" style="font-size:1rem;margin-bottom:.8rem;">Submission Format</div>
@@ -963,7 +1000,7 @@
 
       <div class="whitelist-placeholder">
         <div class="whitelist-placeholder-title">Approved Models &amp; Datasets</div>
-        <p>The <a href="https://github.com/betrac/betrac.github.io/blob/main/rules.md" target="_blank" style="color:var(--accent);font-weight:500">full rules document</a> includes approved model and dataset lists, detailed parameter counting rules (MoE, PLE/MatFormer, omni-model stripping), and submission requirements. Additional models or datasets may be proposed for inclusion by <strong>May 4, 2026</strong> — contact <a href="mailto:betrac@googlegroups.com" style="color:var(--accent)">betrac@googlegroups.com</a>.</p>
+        <p>The <a href="https://github.com/betrac/betrac.github.io/blob/main/rules.md" target="_blank" style="color:var(--accent);font-weight:500">full rules document</a> includes approved model and dataset lists, detailed parameter counting rules (MoE, PLE/MatFormer, omni-model stripping), and submission requirements. Additional models or datasets may be proposed for inclusion by <strong><span class="inline-date-old">May 4, 2026</span> <span class="inline-date-new">May 11, 2026</span><span class="inline-ext-badge">+1 wk</span></strong> — contact <a href="mailto:betrac@googlegroups.com" style="color:var(--accent)">betrac@googlegroups.com</a>.</p>
       </div>
 
       <div class="register-box">
@@ -1029,7 +1066,6 @@
         <button class="lb-tab" onclick="switchTab('hw')">Heavyweight Track <span style="font-size:.65rem;opacity:.7;margin-left:.3rem;">≤ 36B</span></button>
       </div>
 
-      <!-- ── Lightweight Track ── -->
       <div class="lb-panel active" id="panel-lw">
         <div class="lb-info-row">
           <span class="lb-info-text">Ranked by Open Medical Concept F1 · Lightweight Track (≤ 6B parameters, e2e only)</span>
@@ -1068,7 +1104,6 @@
         <p style="font-size:.71rem;color:var(--text-dim);margin-top:.6rem;font-family:'DM Mono',monospace;">* Baseline evaluated on dev set. </p>
       </div>
 
-      <!-- ── Heavyweight Track ── -->
       <div class="lb-panel" id="panel-hw">
         <div class="lb-info-row">
           <span class="lb-info-text">Ranked by Open Medical Concept F1 · Heavyweight Track (≤ 36B parameters)</span>
@@ -1143,7 +1178,6 @@
         <p style="font-size:.71rem;color:var(--text-dim);margin-top:.6rem;font-family:'DM Mono',monospace;">* Baseline evaluated on dev set. System description deadline: June 24, 2026.</p>
       </div>
 
-      <!-- ── Reference Topline (cascade, not ranked) ── -->
       <div class="lb-ref-section">
         <div class="lb-ref-header">
           <span class="lb-ref-label">⚠ Reference Topline — Cascade Systems (not ranked)</span>
@@ -1201,11 +1235,42 @@
       <h2 class="section-title">Schedule</h2>
       <div class="tl-wrap" style="grid-template-columns:1fr;max-width:600px;">
         <div class="timeline">
-          <div class="timeline-item"><div class="tldot active"></div><div class="tldate">April 2, 2026</div><div class="tllabel">Training + Dev Data Release</div><div class="tlsub">Audio + reference SOAP notes published on Hugging Face</div></div>
-          <div class="timeline-item"><div class="tldot"></div><div class="tldate">May 4, 2026</div><div class="tllabel">Open-Source Proposals Deadline</div><div class="tlsub">Participants proposing additional open-source models or data</div></div>
-          <div class="timeline-item"><div class="tldot"></div><div class="tldate">June 24, 2026</div><div class="tllabel">System Description Deadline</div><div class="tlsub">Submit system description to receive test audio</div></div>
-          <div class="timeline-item"><div class="tldot"></div><div class="tldate">~July 1, 2026</div><div class="tllabel">Test SOAP Notes Due</div><div class="tlsub">Teams submit generated SOAP notes (~1 week after receiving test audio)</div></div>
-          <div class="timeline-item"><div class="tldot"></div><div class="tldate">July 8, 2026</div><div class="tllabel">Challenge Paper Submission</div><div class="tlsub">System description papers due for IEEE SLT 2026 proceedings</div></div>
+          <div class="timeline-item">
+            <div class="tldot active"></div>
+            <div class="tldate">April 2, 2026</div>
+            <div class="tllabel">Training + Dev Data Release</div>
+            <div class="tlsub">Audio + reference SOAP notes published on Hugging Face</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tldot"></div>
+            <div class="tldate">
+              <span class="date-extended">
+                <span class="date-old">May 4, 2026</span>
+                <span class="date-new">May 11, 2026</span>
+                <span class="date-badge-ext">+1 week</span>
+              </span>
+            </div>
+            <div class="tllabel">Open-Source Proposals Deadline</div>
+            <div class="tlsub">Participants proposing additional open-source models or data</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tldot"></div>
+            <div class="tldate">June 24, 2026</div>
+            <div class="tllabel">System Description Deadline</div>
+            <div class="tlsub">Submit system description to receive test audio</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tldot"></div>
+            <div class="tldate">~July 1, 2026</div>
+            <div class="tllabel">Test SOAP Notes Due</div>
+            <div class="tlsub">Teams submit generated SOAP notes (~1 week after receiving test audio)</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tldot"></div>
+            <div class="tldate">July 8, 2026</div>
+            <div class="tllabel">Challenge Paper Submission</div>
+            <div class="tlsub">System description papers due for IEEE SLT 2026 proceedings</div>
+          </div>
         </div>
       </div>
     </div>
