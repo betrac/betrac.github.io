@@ -126,6 +126,9 @@ The models listed below are approved for use, provided they meet the criteria in
 | SALMONN-7B / 13B   | ~8B / ~14B (est.)                | Whisper-L + BEATs + Vicuna backbone                   | [HF](https://huggingface.co/tsinghua-ee/SALMONN-7B) · [arXiv](https://arxiv.org/abs/2310.13289)           |
 | LLaMA-Omni         | ~9.1B (est.)                     | Llama-3.1-8B backbone                                 | [HF](https://huggingface.co/ICTNLP/Llama-3.1-8B-Omni) · [arXiv](https://arxiv.org/abs/2409.06666)         |
 | Gemma-3n-E2B       | 6B raw / **~2B effective** ⚠️    | PLE offloading; confirm counting rule with organizers | [HF](https://huggingface.co/google/gemma-3n-E2B-it) · [Docs](https://ai.google.dev/gemma/docs/gemma-3n)   |
+| Gemma 4 E2B        | **5.10B**                        | Dense                                                 | [HF](https://huggingface.co/google/gemma-4-e2b-it) · [Docs](https://ai.google.dev/gemma/docs/core/model_card_4) |
+| Gemma 4 E4B        | **7.94B**                        | Dense                                                 | [HF](https://huggingface.co/google/gemma-4-e4b-it) · [Docs](https://ai.google.dev/gemma/docs/core/model_card_4)|
+| Phi-4-multimodal-instruct | **~5.6B**                 | Dense                                                 | [HF](https://huggingface.co/microsoft/Phi-4-multimodal-instruct) · [arXiv](https://arxiv.org/abs/2503.01743) |
 
 
 ### Self-Supervised Audio Encoders
@@ -167,8 +170,15 @@ The models listed below are approved for use, provided they meet the criteria in
 | X-vector / VBx (Kaldi ResNet101)                       | ~4.2M / ~40–45M | Speaker embeddings + clustering      | [GitHub](https://github.com/BUTSpeechFIT/VBx) · [arXiv](https://arxiv.org/abs/2012.14952)                             |
 | DiariZen-Large / Large-s80                             | ~320M+ / 63.3M  | EEND-VC diarization                  | [GitHub](https://github.com/BUTSpeechFIT/DiariZen) · [arXiv](https://arxiv.org/abs/2409.09408)                        |
 
-
 > ℹ️ Diarization, VAD, and speaker embedding models used as **separate inference steps** are heavyweight track only and their forward-pass parameters count toward the track budget. In the lightweight track, such functionality may only appear as integrated (end-to-end optimizable) submodules within the single model.
+
+### TTS
+| Model                                                  | Params          | Type                                 | Links                                                                                                                 |
+| ------------------------------------------------------ | --------------- | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| Qwen3-TTS-12Hz-1.7B-Base                               | 1.7B            | TTS                                  | [HF](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-Base) · [arXiv](https://arxiv.org/abs/2601.15621)                |
+| Kokoro-82M                                             | 82M             | TTS                                  | [HF](https://huggingface.co/hexgrad/Kokoro-82M)                                                    
+
+> ℹ️ TTS models used as an **augmentation step**, are heavyweight track only and their forward-pass parameters count toward the track budget. In the lightweight track, such functionality may only appear as integrated (end-to-end optimizable) submodules within the single model.
 
 ### Text LLMs
 
@@ -185,6 +195,15 @@ Approved LLM families (see §7 to propose others):
 | Mistral / Mixtral | [mistralai](https://huggingface.co/mistralai)     | [arXiv:2310.06825](https://arxiv.org/abs/2310.06825) · [arXiv:2401.04088](https://arxiv.org/abs/2401.04088) |
 | OLMo              | [allenai](https://huggingface.co/allenai)         | [arXiv:2501.00656](https://arxiv.org/abs/2501.00656)                                                        |
 | TinyLlama         | [TinyLlama](https://huggingface.co/TinyLlama)     | [arXiv:2401.02385](https://arxiv.org/abs/2401.02385)                                                        |
+
+Approved LLMs:
+| Model              | Total params                     | Notes                                                 | Links                                                                                                     |
+| ------------------ | -------------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Llama3-Med42-8B    | ~8B                              | Dense; Fine-tuned Llama3-8B                           | [HF](https://huggingface.co/m42-health/Llama3-Med42-8B) · [arXiv](https://arxiv.org/html/2408.06142v1)    |
+| Llama3-OpenBioLLM-8B| ~8B                             | Dense; Fine-tuned Llama3-8B                           | [HF](https://huggingface.co/aaditya/Llama3-OpenBioLLM-8B) · [arXiv](https://arxiv.org/abs/2408.13833)     |
+| II-Medical-8B      | ~8B                              | Dense; Fine-tuned Qwen3-8B                            | [HF](https://huggingface.co/Intelligent-Internet/II-Medical-8B) · [Doc](https://ii.inc/web/blog/post/ii-medical)|
+| meditron-7b        | ~7B                              | Dense; Fine-tuned Llama2-7B                           | [HF](https://huggingface.co/epfl-llm/meditron-7b) · [arXiv](https://arxiv.org/abs/2311.16079)             |
+| BioMistral-7B      | ~7B                              | Dense; Fine-tuned Mistral 7B                          | [HF](https://huggingface.co/BioMistral/BioMistral-7B) · [arXiv](https://arxiv.org/abs/2402.10373)         |
 
 
 ---
