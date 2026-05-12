@@ -178,7 +178,7 @@ The models listed below are approved for use, provided they meet the criteria in
 | Qwen3-TTS-12Hz-1.7B-Base                               | 1.7B            | TTS                                  | [HF](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-Base) · [arXiv](https://arxiv.org/abs/2601.15621)                |
 | Kokoro-82M                                             | 82M             | TTS                                  | [HF](https://huggingface.co/hexgrad/Kokoro-82M)                                                    
 
-> ℹ️ TTS models used as an **augmentation step**, are heavyweight track only and their forward-pass parameters count toward the track budget. In the lightweight track, such functionality may only appear as integrated (end-to-end optimizable) submodules within the single model.
+> ℹ️ TTS models used as an **augmentation step**, independent of inference, do not count towards the parameter budget. If they are used as a tool during inference, they are heavyweight track only and their forward-pass parameters count toward the track budget. In the lightweight track, such functionality may only appear as integrated (end-to-end optimizable) submodules within the single model.
 
 ### Text LLMs
 
@@ -199,11 +199,12 @@ Approved LLM families (see §7 to propose others):
 Approved LLMs:
 | Model              | Total params                     | Notes                                                 | Links                                                                                                     |
 | ------------------ | -------------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| Llama3-Med42-8B    | ~8B                              | Dense; Fine-tuned Llama3-8B                           | [HF](https://huggingface.co/m42-health/Llama3-Med42-8B) · [arXiv](https://arxiv.org/html/2408.06142v1)    |
-| Llama3-OpenBioLLM-8B| ~8B                             | Dense; Fine-tuned Llama3-8B                           | [HF](https://huggingface.co/aaditya/Llama3-OpenBioLLM-8B) · [arXiv](https://arxiv.org/abs/2408.13833)     |
-| II-Medical-8B      | ~8B                              | Dense; Fine-tuned Qwen3-8B                            | [HF](https://huggingface.co/Intelligent-Internet/II-Medical-8B) · [Doc](https://ii.inc/web/blog/post/ii-medical)|
-| meditron-7b        | ~7B                              | Dense; Fine-tuned Llama2-7B                           | [HF](https://huggingface.co/epfl-llm/meditron-7b) · [arXiv](https://arxiv.org/abs/2311.16079)             |
-| BioMistral-7B      | ~7B                              | Dense; Fine-tuned Mistral 7B                          | [HF](https://huggingface.co/BioMistral/BioMistral-7B) · [arXiv](https://arxiv.org/abs/2402.10373)         |
+| Llama3-Med42-8B    | ~8B                              | Fine-tuned Llama3-8B                                  | [HF](https://huggingface.co/m42-health/Llama3-Med42-8B) · [arXiv](https://arxiv.org/html/2408.06142v1)    |
+| Llama3-OpenBioLLM-8B| ~8B                             | Fine-tuned Llama3-8B                                  | [HF](https://huggingface.co/aaditya/Llama3-OpenBioLLM-8B) · [arXiv](https://arxiv.org/abs/2408.13833)     |
+| II-Medical-8B      | ~8B                              | Fine-tuned Qwen3-8B                                   | [HF](https://huggingface.co/Intelligent-Internet/II-Medical-8B) · [Doc](https://ii.inc/web/blog/post/ii-medical)|
+| meditron-7b        | ~7B                              | Fine-tuned Llama2-7B                                  | [HF](https://huggingface.co/epfl-llm/meditron-7b) · [arXiv](https://arxiv.org/abs/2311.16079)             |
+| BioMistral-7B      | ~7B                              | Fine-tuned Mistral 7B                                 | [HF](https://huggingface.co/BioMistral/BioMistral-7B) · [arXiv](https://arxiv.org/abs/2402.10373)         |
+| omi-health/sum-small| ~4B                             | Fine-tuned Phi-3-mini-3k-instruct; Dataset Availible  | [HF](https://huggingface.co/omi-health/sum-small) · [Docs](https://omi.health/research/omi-sum)           |
 
 
 ---
@@ -220,6 +221,7 @@ Approved LLMs:
 | **ACI-Bench**                | 207 conv.   | Doctor-patient dialogue + clinical visit notes | [GitHub](https://github.com/wyim/aci-bench) · [Figshare](https://figshare.com/articles/dataset/aci-bench-corpus_zip/22494601) · [Paper](https://www.nature.com/articles/s41597-023-02487-3) |
 | **MTS-Dialog**               | 1,701 conv. | Doctor-patient dialogue + clinical note sections (20 section types) | [GitHub](https://github.com/abachaa/MTS-Dialog) · [Paper](https://aclanthology.org/2023.eacl-main.168) |
 | **PriMock57**                | 57 conv.    | Mock primary care consultations, audio + transcripts + clinician notes | [GitHub](https://github.com/babylonhealth/primock57) · [arXiv](https://arxiv.org/abs/2204.00333) |
+| **medical-dialogue-to-soap-summary **| 10,000 conv.    | Synthetic doctor-patient, SOAP | [GitHub](https://huggingface.co/datasets/omi-health/medical-dialogue-to-soap-summary) · [arXiv](https://arxiv.org/abs/2310.15959v2) · [Docs](https://omi.health/research/omi-sum) |
 
 
 ### Speech / Audio
