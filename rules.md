@@ -110,7 +110,7 @@ Submissions found to be non-compliant will be excluded from rankings. If non-com
 
 ## Eligible Models
 
-The models listed below are approved for use, provided they meet the criteria in §8. Additional models may be proposed for inclusion by **May 4, 2026** — contact **[betrac@googlegroups.com](mailto:betrac@googlegroups.com)** (see §7).
+The models listed below are approved for use, provided they meet the criteria in §8. Additional models may be proposed for inclusion by **May 4, 2026** — contact **[betrac@googlegroups.com](mailto:betrac@googlegroups.com)** (see §7). **All eligible models must use versions uploaded no later than May 12, 2026.**
 
 > ⚠️ **Parameter counting reminder:** The budget counts all parameters that participate in a forward pass. Unused sub-modules (e.g., vision encoders, speech decoders) may be stripped — see §8. For MoE models, all expert parameters count (total, not active-per-token). Named sizes (e.g., "7B") typically refer to the LLM core only — always verify against the model card.
 
@@ -126,10 +126,15 @@ The models listed below are approved for use, provided they meet the criteria in
 | SALMONN-7B / 13B   | ~8B / ~14B (est.)                | Whisper-L + BEATs + Vicuna backbone                   | [HF](https://huggingface.co/tsinghua-ee/SALMONN-7B) · [arXiv](https://arxiv.org/abs/2310.13289)           |
 | LLaMA-Omni         | ~9.1B (est.)                     | Llama-3.1-8B backbone                                 | [HF](https://huggingface.co/ICTNLP/Llama-3.1-8B-Omni) · [arXiv](https://arxiv.org/abs/2409.06666)         |
 | Gemma-3n-E2B       | 6B raw / **~2B effective** ⚠️    | PLE offloading; confirm counting rule with organizers | [HF](https://huggingface.co/google/gemma-3n-E2B-it) · [Docs](https://ai.google.dev/gemma/docs/gemma-3n)   |
-| Gemma 4 E2B        | **5.10B**                        | Dense                                                 | [HF](https://huggingface.co/google/gemma-4-e2b-it) · [Docs](https://ai.google.dev/gemma/docs/core/model_card_4) |
-| Gemma 4 E4B        | **7.94B**                        | Dense                                                 | [HF](https://huggingface.co/google/gemma-4-e4b-it) · [Docs](https://ai.google.dev/gemma/docs/core/model_card_4)|
 | Phi-4-multimodal-instruct | **~5.6B**                 | Dense                                                 | [HF](https://huggingface.co/microsoft/Phi-4-multimodal-instruct) · [arXiv](https://arxiv.org/abs/2503.01743) |
 
+| Family            | HuggingFace / Download                            | Paper / Doc                                                                                                 |
+| ----------------- | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Voxtral           | [Voxtral](https://huggingface.co/collections/mistralai/voxtral) | [arxiv main](https://arxiv.org/abs/2507.13264) · [Docs](https://mistral.ai/news/voxtral)|
+| MOSS-Audio        | [MossAudio](https://huggingface.co/collections/OpenMOSS-Team/moss-audio) | [Docs](https://github.com/OpenMOSS/MOSS-Audio) |
+| Gemma 4           | [Gemma 4](https://huggingface.co/collections/google/gemma-4) | [Docs](https://ai.google.dev/gemma/docs/core/model_card_4) |
+| Omnilingual ASR   | [Omnilingual ASR](https://github.com/facebookresearch/omnilingual-asr) | [Docs](https://ai.meta.com/research/publications/omnilingual-asr-open-source-multilingual-speech-recognition-for-1600-languages/) |
+| Granite Speech    | [Granite Speech](https://huggingface.co/collections/ibm-granite/granite-speech) | [arxiv](https://arxiv.org/abs/2505.08699) |
 
 ### Self-Supervised Audio Encoders
 
@@ -189,7 +194,7 @@ Approved LLM families (see §7 to propose others):
 | ----------------- | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | Qwen2.5 / Qwen3   | [Qwen org](https://huggingface.co/Qwen)           | [arXiv:2412.15115](https://arxiv.org/abs/2412.15115) · [arXiv:2505.09388](https://arxiv.org/abs/2505.09388) |
 | Llama 2 / 3.x     | [meta-llama](https://huggingface.co/meta-llama)   | [arXiv:2307.09288](https://arxiv.org/abs/2307.09288) · [arXiv:2407.21783](https://arxiv.org/abs/2407.21783) |
-| DeepSeek V2/V3/R1 | [deepseek-ai](https://huggingface.co/deepseek-ai) | [arXiv:2412.19437](https://arxiv.org/abs/2412.19437) · [arXiv:2501.12948](https://arxiv.org/abs/2501.12948) |
+| DeepSeek V2/V3/V4/R1 | [deepseek-ai](https://huggingface.co/deepseek-ai) | [arXiv:2412.19437](https://arxiv.org/abs/2412.19437) · [arXiv:2501.12948](https://arxiv.org/abs/2501.12948) |
 | Phi-3 / 3.5 / 4   | [microsoft](https://huggingface.co/microsoft)     | [arXiv:2404.14219](https://arxiv.org/abs/2404.14219) · [arXiv:2412.08905](https://arxiv.org/abs/2412.08905) |
 | Gemma 2 / 3       | [google](https://huggingface.co/google)           | [arXiv:2408.00118](https://arxiv.org/abs/2408.00118) · [Report](https://goo.gle/Gemma3Report)               |
 | Mistral / Mixtral | [mistralai](https://huggingface.co/mistralai)     | [arXiv:2310.06825](https://arxiv.org/abs/2310.06825) · [arXiv:2401.04088](https://arxiv.org/abs/2401.04088) |
