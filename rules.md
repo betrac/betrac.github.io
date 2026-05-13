@@ -192,7 +192,7 @@ Approved LLM families (see §7 to propose others):
 
 | Family            | HuggingFace                                       | Paper                                                                                                       |
 | ----------------- | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Qwen2.5 / Qwen3   | [Qwen org](https://huggingface.co/Qwen)           | [arXiv:2412.15115](https://arxiv.org/abs/2412.15115) · [arXiv:2505.09388](https://arxiv.org/abs/2505.09388) |
+| Qwen2.5 / Qwen3 / Qwen3.5 (except Omni)  | [Qwen org](https://huggingface.co/Qwen)           | [arXiv:2412.15115](https://arxiv.org/abs/2412.15115) · [arXiv:2505.09388](https://arxiv.org/abs/2505.09388) |
 | Llama 2 / 3.x     | [meta-llama](https://huggingface.co/meta-llama)   | [arXiv:2307.09288](https://arxiv.org/abs/2307.09288) · [arXiv:2407.21783](https://arxiv.org/abs/2407.21783) |
 | DeepSeek V2/V3/V4/R1 | [deepseek-ai](https://huggingface.co/deepseek-ai) | [arXiv:2412.19437](https://arxiv.org/abs/2412.19437) · [arXiv:2501.12948](https://arxiv.org/abs/2501.12948) |
 | Phi-3 / 3.5 / 4   | [microsoft](https://huggingface.co/microsoft)     | [arXiv:2404.14219](https://arxiv.org/abs/2404.14219) · [arXiv:2412.08905](https://arxiv.org/abs/2412.08905) |
