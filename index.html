@@ -921,11 +921,20 @@
           <div class="modal-deadline-date">July 8, 2026</div>
         </div>
       </div>
+      <div style="margin-bottom:1.4rem;display:flex;align-items:flex-start;gap:.7rem;background:var(--green-bg);border:1px solid var(--green-bdr);border-radius:8px;padding:.85rem 1.1rem;">
+        <span style="font-size:1.2rem;line-height:1;">🏆</span>
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:.25rem;">Leaderboard Updated</div>
+          <div style="font-size:.84rem;color:var(--text-muted);line-height:1.6;">Official test-set results are now live — check out how teams ranked in the <a href="#leaderboard" onclick="closeModal()" style="color:var(--green);font-weight:600;text-decoration:underline;text-underline-offset:2px;">Lightweight and Heavyweight tracks</a>.</div>
+        </div>
+      </div>
       <div class="modal-actions">
         <a href="https://attend.ieee.org/slt-2026/authors-instructions/" target="_blank" class="modal-btn-primary">
           Author Instructions →
         </a>
-        <button class="modal-btn-secondary" onclick="closeModal()">Dismiss</button>
+        <a href="#leaderboard" onclick="closeModal()" class="modal-btn-secondary" style="text-decoration:none;">
+          View Leaderboard
+        </a>
       </div>
     </div>
   </div>
